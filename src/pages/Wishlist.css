@@ -1,0 +1,217 @@
+/* ========== WISHLIST PAGE - FIGMA STYLE ========== */
+.wishlist-page-figma {
+    background-color: #fff;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.wishlist-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Section Styling */
+.wishlist-section {
+    margin-bottom: 60px;
+}
+
+.for-you-section {
+    margin-bottom: 60px;
+}
+
+/* Section Header */
+.wishlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.wishlist-header h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #000;
+}
+
+/* View All Button - Filled */
+.view-all-btn-figma {
+    background-color: #db4444;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.view-all-btn-figma:hover {
+    background-color: #c13a3a;
+}
+
+/* View All Button - Outlined */
+.view-all-btn-outline {
+    background-color: transparent;
+    color: #000;
+    border: 1px solid #000;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.view-all-btn-outline:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Product Grid - Same as Home */
+.product-grid-figma {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.product-card-figma {
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.product-card-figma:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.p-img-box-figma {
+    background-color: #f5f5f5;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+
+.p-img-box-figma img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Heart & Cart buttons - VISIBLE by default */
+.heart-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+}
+
+.heart-btn:hover {
+    background: #db4444;
+    color: white;
+}
+
+.cart-btn {
+    position: absolute;
+    top: 50px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+}
+
+.cart-btn:hover {
+    background: #db4444;
+    color: white;
+}
+
+.p-info-figma {
+    padding: 16px;
+}
+
+.p-info-figma h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.p-price-figma {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.p-price-figma .current {
+    font-size: 14px;
+    font-weight: 600;
+    color: #db4444;
+}
+
+.p-price-figma .old {
+    font-size: 14px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.p-rating-figma {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.p-rating-figma .reviews {
+    font-size: 12px;
+    color: #999;
+    margin-left: 4px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+    .product-grid-figma {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .product-grid-figma {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .wishlist-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid-figma {
+        grid-template-columns: 1fr;
+    }
+}

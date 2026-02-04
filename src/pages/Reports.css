@@ -1,0 +1,137 @@
+.reports-page {
+    padding: 24px;
+    background-color: var(--main-bg);
+    min-height: 100vh;
+    color: var(--text-main);
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.page-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.page-header p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.report-card {
+    padding: 24px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.report-card .card-header {
+    margin-bottom: 24px;
+}
+
+.report-card h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.chart-wrapper {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.placeholder-chart {
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.bar {
+    width: 32px;
+    background-color: #3b82f6;
+    border-radius: 4px 4px 0 0;
+    transition: height 0.3s;
+}
+
+.chart-labels {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 12px;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.top-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.top-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.top-rank {
+    font-weight: 800;
+    color: var(--accent-blue);
+    font-size: 18px;
+    width: 20px;
+}
+
+.top-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-main);
+}
+
+.top-val {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.top-progress {
+    width: 100px;
+    height: 6px;
+    background-color: var(--main-bg);
+    border-radius: 3px;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #3b82f6;
+    border-radius: 3px;
+}
+
+@media (max-width: 1024px) {
+    .reports-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,450 @@
+/* ========== PRODUCT DETAIL PAGE - FIGMA STYLE ========== */
+.product-detail-page-figma {
+    background-color: #fff;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    padding-bottom: 60px;
+}
+
+.pd-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 20px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #000;
+    margin-bottom: 40px;
+}
+
+.breadcrumb-item {
+    color: #999;
+    font-weight: 400;
+}
+
+.breadcrumb-item.current {
+    color: #000;
+    font-weight: 500;
+}
+
+.separator {
+    color: #999;
+}
+
+/* Content Layout */
+.pd-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    margin-bottom: 80px;
+}
+
+/* Image Gallery */
+.product-gallery {
+    display: flex;
+    gap: 30px;
+}
+
+.gallery-thumbnails {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.thumbnail {
+    width: 100px;
+    height: 100px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.thumbnail.active {
+    border-color: #db4444;
+    /* Assuming red selection border */
+}
+
+.thumbnail img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+.gallery-main {
+    flex: 1;
+    background: #f5f5f5;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 500px;
+}
+
+.gallery-main img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.gallery-nav.prev {
+    left: 16px;
+}
+
+.gallery-nav.next {
+    right: 16px;
+}
+
+/* Product Info */
+.product-info-figma {
+    padding-top: 10px;
+}
+
+.pd-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.pd-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #000;
+    line-height: 1.2;
+}
+
+.heart-btn-outline {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.pd-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.stars {
+    display: flex;
+    gap: 2px;
+}
+
+.divider {
+    color: #ccc;
+}
+
+.stock-status {
+    color: #00FF66;
+    /* Bright Green */
+    font-weight: 500;
+}
+
+.pd-price {
+    font-size: 24px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 24px;
+}
+
+.pd-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #000;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #000;
+}
+
+/* Colors */
+.pd-colors {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.color-label {
+    font-size: 20px;
+    font-weight: 400;
+    color: #000;
+}
+
+.color-options {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.color-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.color-circle.active {
+    outline: 2px solid #fff;
+    box-shadow: 0 0 0 2px #000;
+    /* Outer ring for selection */
+    width: 22px;
+    height: 22px;
+}
+
+/* Actions */
+.pd-actions {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 40px;
+    align-items: center;
+}
+
+.quantity-control-figma {
+    display: flex;
+    border: 1px solid #999;
+    border-radius: 4px;
+    height: 44px;
+    overflow: hidden;
+}
+
+.quantity-control-figma button {
+    width: 40px;
+    background: #fff;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.quantity-control-figma button:hover {
+    background: #db4444;
+    color: #fff;
+}
+
+.quantity-control-figma button.plus {
+    background: #db4444;
+    color: #fff;
+}
+
+.quantity-control-figma span {
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 500;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+}
+
+.action-btn {
+    height: 44px;
+    padding: 0 40px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+}
+
+.buy-now {
+    background: #db4444;
+    color: #fff;
+}
+
+.add-cart {
+    background: #db4444;
+    /* Consistent red per screenshot */
+    color: #fff;
+}
+
+.action-btn:hover {
+    background: #c13a3a;
+}
+
+/* Services */
+.pd-services {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.service-box {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.service-box:last-child {
+    border-bottom: none;
+}
+
+.service-text h4 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: #000;
+}
+
+.service-text p {
+    font-size: 12px;
+    color: #000;
+    text-decoration: underline;
+    /* Found in some designs, helps link visually */
+}
+
+/* Similar Products */
+.similar-products-section {
+    margin-top: 60px;
+}
+
+.section-header-red {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.red-block {
+    width: 20px;
+    height: 40px;
+    background: #db4444;
+    border-radius: 4px;
+}
+
+.section-header-red h2 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #db4444;
+}
+
+/* Product Card Reuse Styles */
+.product-grid-figma {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.product-card-figma {
+    cursor: pointer;
+}
+
+.p-img-box-figma {
+    background: #f5f5f5;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.p-img-box-figma img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+.heart-btn,
+.cart-btn {
+    position: absolute;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+}
+
+.heart-btn {
+    top: 12px;
+}
+
+.cart-btn {
+    top: 50px;
+}
+
+.p-info-figma h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #000;
+}
+
+.p-price-figma {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.current {
+    color: #db4444;
+    font-weight: 500;
+}
+
+.old {
+    color: #999;
+    text-decoration: line-through;
+}
+
+.p-rating-figma {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 14px;
+    color: #999;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .pd-content {
+        grid-template-columns: 1fr;
+    }
+}

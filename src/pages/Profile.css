@@ -1,0 +1,237 @@
+/* ========== PROFILE PAGE - FIGMA STYLE ========== */
+.profile-page-figma {
+    background-color: #fff;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    padding-bottom: 60px;
+}
+
+.profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 20px;
+}
+
+/* Header Welcome */
+.profile-header-welcome {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+.user-name-highlight {
+    color: #db4444;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.breadcrumb a {
+    color: #666;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: #db4444;
+}
+
+.breadcrumb .current {
+    color: #000;
+}
+
+/* Layout */
+.profile-layout {
+    display: flex;
+    gap: 60px;
+}
+
+/* Sidebar */
+.profile-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.sidebar-section {
+    margin-bottom: 30px;
+}
+
+.sidebar-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 12px;
+}
+
+.sidebar-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-section ul li {
+    margin-bottom: 8px;
+}
+
+.sidebar-section ul li a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #888;
+    transition: color 0.2s;
+    display: block;
+    padding: 4px 0;
+}
+
+.sidebar-section ul li a:hover,
+.sidebar-section ul li a.active {
+    color: #db4444;
+}
+
+/* Main Content */
+.profile-main {
+    flex: 1;
+    background: #fff;
+    padding: 40px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+}
+
+.main-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #db4444;
+    margin-bottom: 30px;
+}
+
+.profile-form {
+    max-width: 800px;
+}
+
+.form-row {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 24px;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #555;
+    outline: none;
+}
+
+.password-section {
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.password-section label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.password-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.password-inputs input {
+    width: 100%;
+    padding: 12px 16px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+}
+
+/* Actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    align-items: center;
+}
+
+.cancel-btn {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+}
+
+.save-btn {
+    background: #db4444;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 32px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(219, 68, 68, 0.2);
+    transition: background 0.2s;
+}
+
+.save-btn:hover {
+    background: #c13a3a;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 900px) {
+    .profile-layout {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .profile-sidebar {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .sidebar-section {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .profile-main {
+        padding: 24px;
+    }
+}

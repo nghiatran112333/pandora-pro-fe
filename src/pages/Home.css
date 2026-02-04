@@ -1,0 +1,732 @@
+.home-page {
+    background-color: var(--main-bg);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+}
+
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* ========== TOP HEADER ========== */
+.top-header {
+    background-color: #000;
+    color: #fff;
+    font-size: 14px;
+    padding: 12px 0;
+    text-align: center;
+    position: relative;
+    z-index: 100;
+}
+
+.top-header-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.shop-now-link {
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.lang-selector {
+    position: absolute;
+    right: 60px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+/* ========== HERO BANNER - PROFESSIONAL BLUE GRADIENT ========== */
+.hero-banner {
+    background: linear-gradient(135deg, #36D1DC 0%, #5B86E5 100%) !important;
+    /* Lighter "Sky Blue" Gradient */
+    border-radius: 24px;
+    /* Fully Softened */
+    padding: 0;
+    color: #fff;
+    margin-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+    height: 420px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(54, 209, 220, 0.25);
+}
+
+.hero-banner.light-theme {
+    background: linear-gradient(135deg, #36D1DC 0%, #5B86E5 100%) !important;
+    color: #fff;
+}
+
+/* Force override any other potential leaks */
+.home-page .hero-banner {
+    background: linear-gradient(135deg, #36D1DC 0%, #5B86E5 100%) !important;
+    padding: 0;
+}
+
+/* ... existing styles ... */
+
+.cat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* ... existing styles ... */
+
+.best-sellers-wrapper {
+    background: linear-gradient(180deg, #e8f4fc 0%, #d4ecfb 100%);
+    border-radius: 24px;
+    padding: 30px;
+    margin-bottom: 60px;
+    border: 1px solid #e1f1fc;
+}
+
+/* ... existing styles ... */
+
+.view-all-btn {
+    background-color: #db4444;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* ... existing styles ... */
+
+.product-card-figma {
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid var(--border-color);
+}
+
+/* ... existing styles ... */
+
+.view-all-products-btn {
+    background-color: #db4444;
+    color: white;
+    border: none;
+    padding: 14px 48px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px rgba(219, 68, 68, 0.3);
+}
+
+/* ... existing styles ... */
+
+.flash-sales-section {
+    background: linear-gradient(180deg, #e8f4fc 0%, #d4ecfb 100%);
+    border-radius: 24px;
+    padding: 30px;
+    margin-bottom: 60px;
+    border: 1px solid #e1f1fc;
+}
+
+.hero-content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+    padding: 0 60px;
+    /* Add padding directly to content container */
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    animation: fadeInLeft 0.8s ease-out;
+}
+
+.hero-sub {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    /* White with slight transparency */
+    font-weight: 500;
+}
+
+.apple-icon {
+    font-size: 24px;
+}
+
+.hero-title {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 32px;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.buy-now {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #fff;
+    color: #0072FF;
+    /* Blue text */
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 32px;
+    border-radius: 30px;
+    /* Pill shape button */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.buy-now:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    gap: 14px;
+}
+
+.hero-pagination {
+    display: flex;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background-color: #fff;
+    width: 24px;
+    /* Elongated active dot */
+    border-radius: 10px;
+    opacity: 1;
+}
+
+.hero-image {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: fadeInRight 0.8s ease-out;
+}
+
+.hero-image img {
+    max-height: 85%;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.2));
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Float animation for the phone */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hero-banner {
+        background: linear-gradient(180deg, #00C6FF 0%, #0072FF 100%);
+        flex-direction: column;
+        padding: 40px 20px;
+        height: auto;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        padding: 0;
+        text-align: center;
+    }
+
+    .hero-text {
+        max-width: 100%;
+        margin-bottom: 30px;
+        align-items: center;
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .hero-pagination {
+        justify-content: center;
+    }
+
+    .hero-image {
+        justify-content: center;
+    }
+}
+
+/* ========== SECTION HEADERS - FIGMA SIMPLE STYLE ========== */
+.section {
+    margin-bottom: 60px;
+}
+
+.section-header-simple {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.section-header-simple h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.nav-arrows {
+    display: flex;
+    gap: 8px;
+}
+
+.arrow {
+    width: 40px;
+    height: 40px;
+    background-color: var(--bg-input);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-main);
+}
+
+.arrow:hover {
+    background-color: var(--border-color);
+}
+
+.section-header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* ========== CATEGORY GRID - FIGMA STYLE ========== */
+.cat-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+.cat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--card-bg);
+}
+
+.cat-item:hover {
+    border-color: #db4444;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cat-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cat-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.cat-item span {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+/* ========== BEST SELLERS - WITH BLUE GRADIENT BACKGROUND ========== */
+.best-sellers-wrapper {
+    background: linear-gradient(180deg, #e8f4fc 0%, #d4ecfb 100%);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 60px;
+}
+
+.best-sellers-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.best-sellers-header h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #db4444;
+}
+
+.view-all-btn {
+    background-color: #db4444;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.view-all-btn:hover {
+    background-color: #c13a3a;
+}
+
+/* ========== INTRO VIDEO SECTION ========== */
+.intro-video-section {
+    margin-bottom: 60px;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: #000;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ========== PRODUCT GRID & CARDS - FIGMA STYLE ========== */
+.product-grid-figma {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.product-card-figma {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.product-card-figma:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.p-img-box-figma {
+    background-color: #f5f5f5;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+
+.p-img-box-figma img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Heart & Cart buttons - VISIBLE by default per Figma */
+.heart-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+}
+
+.heart-btn:hover {
+    background: #db4444;
+    color: white;
+}
+
+.cart-btn {
+    position: absolute;
+    top: 50px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+}
+
+.cart-btn:hover {
+    background: #db4444;
+    color: white;
+}
+
+.p-info-figma {
+    padding: 16px;
+}
+
+.p-info-figma h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.p-price-figma {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.p-price-figma .current {
+    font-size: 14px;
+    font-weight: 600;
+    color: #db4444;
+}
+
+.p-price-figma .old {
+    font-size: 14px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.p-rating-figma {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.p-rating-figma .reviews {
+    font-size: 12px;
+    color: #999;
+    margin-left: 4px;
+}
+
+/* ========== VIEW ALL PRODUCTS BUTTON ========== */
+.view-all-products-btn {
+    background-color: #db4444;
+    color: white;
+    border: none;
+    padding: 14px 48px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.view-all-products-btn:hover {
+    background-color: #c13a3a;
+}
+
+/* ========== SERVICES SECTION - FIGMA STYLE ========== */
+.services-figma {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin: 80px 0;
+    text-align: center;
+}
+
+.service-item-figma {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.service-icon-figma {
+    width: 80px;
+    height: 80px;
+    background-color: #2f2e30;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: 10px solid #c1c0c1;
+}
+
+.service-item-figma h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.service-item-figma p {
+    font-size: 13px;
+    color: #666;
+    max-width: 220px;
+}
+
+/* ========== FLASH SALES SECTION - FIGMA EXACT ========== */
+.flash-sales-section {
+    background: linear-gradient(180deg, #e8f4fc 0%, #d4ecfb 100%);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 60px;
+}
+
+.todays-tag {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+/* Countdown Timer - Figma Style */
+.countdown-figma {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.time-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-label {
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.time-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1;
+}
+
+.time-colon {
+    font-size: 32px;
+    font-weight: 700;
+    color: #db4444;
+    line-height: 1;
+    padding-bottom: 4px;
+}
+
+.flash-sales-products {
+    margin-top: 20px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+    .product-grid-figma {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .cat-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-image {
+        margin-top: 30px;
+        justify-content: center;
+    }
+
+    .product-grid-figma {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .services-figma {
+        grid-template-columns: 1fr;
+    }
+}

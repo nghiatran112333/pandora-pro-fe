@@ -1,0 +1,105 @@
+/* Skeleton Loader Animation */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.skeleton-animate {
+    background: #f0f0f0;
+    background-image: linear-gradient(90deg, #f0f0f0 0px, #f8f8f8 40px, #f0f0f0 80px);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+}
+
+/* Product Skeleton */
+.skeleton-wrapper {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+.skeleton-img {
+    height: 200px;
+    width: 100%;
+}
+
+.skeleton-info {
+    padding: 16px;
+}
+
+.skeleton-title {
+    height: 20px;
+    width: 80%;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.skeleton-price {
+    height: 16px;
+    width: 40%;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.skeleton-rating {
+    height: 14px;
+    width: 30%;
+    border-radius: 4px;
+}
+
+/* Dashboard Skeleton */
+.dashboard-skeleton {
+    padding: 24px;
+}
+
+.skeleton-header {
+    height: 40px;
+    width: 250px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+}
+
+.skeleton-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.skeleton-stat-card {
+    height: 120px;
+    border-radius: 12px;
+}
+
+.skeleton-charts-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+}
+
+.skeleton-chart-card {
+    height: 400px;
+    border-radius: 16px;
+}
+
+@media (max-width: 1024px) {
+    .skeleton-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skeleton-charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .skeleton-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}

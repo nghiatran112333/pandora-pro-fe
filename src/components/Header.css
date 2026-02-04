@@ -1,0 +1,123 @@
+.header {
+    height: 64px;
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.header-search {
+    display: flex;
+    align-items: center;
+    background-color: var(--main-bg);
+    padding: 8px 16px;
+    border-radius: 8px;
+    gap: 12px;
+    width: 400px;
+    border: 1px solid var(--border-color);
+}
+
+.header-search input {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: var(--text-main);
+    font-size: 14px;
+}
+
+.header-search input::placeholder {
+    color: var(--text-muted);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.theme-toggle,
+.icon-btn-ghost {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.theme-toggle:hover,
+.icon-btn-ghost:hover {
+    background-color: var(--main-bg);
+}
+
+.notification-wrapper {
+    position: relative;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 8px;
+}
+
+.notification-wrapper .badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background-color: #3b82f6;
+    color: #fff;
+    font-size: 10px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--header-bg);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.user-profile:hover {
+    background-color: var(--main-bg);
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    background-color: #3b82f6;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+}

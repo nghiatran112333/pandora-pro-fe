@@ -1,0 +1,278 @@
+/* ========== AUTH PAGE - FIGMA EXACT STYLE ========== */
+.auth-page-figma {
+    min-height: 100vh;
+    background-color: #e8f4fc;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Top Banner */
+.auth-top-banner {
+    background-color: #a0d3ff;
+    color: #1e2640;
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Auth Tabs */
+.auth-tabs {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 20px 80px;
+}
+
+.auth-tab {
+    padding: 10px 24px;
+    border: 1px solid #6366f1;
+    background: transparent;
+    color: #6366f1;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.auth-tab.active {
+    background: transparent;
+    color: #6366f1;
+}
+
+.auth-tab:not(.active) {
+    border: 1px solid #e5e5e5;
+    color: #666;
+}
+
+.auth-tab:hover {
+    background: #6366f1;
+    color: #fff;
+}
+
+/* Auth Container */
+.auth-container-figma {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 80px;
+    gap: 80px;
+    align-items: center;
+}
+
+/* Welcome Side */
+.auth-welcome {
+    padding-right: 40px;
+}
+
+.auth-welcome h1 {
+    font-size: 42px;
+    font-weight: 700;
+    color: #000;
+    line-height: 1.2;
+    margin-bottom: 40px;
+}
+
+.welcome-light {
+    font-weight: 400;
+    font-style: italic;
+}
+
+.welcome-illustration {
+    max-width: 300px;
+}
+
+.welcome-illustration img {
+    width: 100%;
+    height: auto;
+}
+
+/* Form Container */
+.auth-form-container {
+    background: transparent;
+    padding: 0;
+}
+
+.auth-form-container h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 24px;
+}
+
+/* Form Groups */
+.auth-form-figma {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group-figma {
+    position: relative;
+}
+
+.form-group-figma input {
+    width: 100%;
+    padding: 14px 40px 14px 16px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    font-size: 14px;
+    background: #f8f9fa;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.form-group-figma input:focus {
+    border-color: #6366f1;
+    background: #fff;
+}
+
+.form-group-figma input::placeholder {
+    color: #999;
+}
+
+.input-eye-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.toggle-password-figma {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+}
+
+/* Form Options */
+.form-options-figma {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.forgot-link-figma {
+    color: #666;
+    text-decoration: none;
+}
+
+.forgot-link-figma:hover {
+    color: #6366f1;
+}
+
+.register-link-figma {
+    color: #666;
+}
+
+.register-link-figma a {
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register-link-figma a:hover {
+    text-decoration: underline;
+}
+
+/* Submit Button */
+.auth-submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+}
+
+.auth-submit-btn:hover {
+    background: linear-gradient(135deg, #5558e8 0%, #7c4ee0 100%);
+}
+
+/* Divider */
+.divider-figma {
+    text-align: center;
+    position: relative;
+    margin: 20px 0;
+}
+
+.divider-figma span {
+    background: #e8f4fc;
+    padding: 0 16px;
+    font-size: 13px;
+    color: #666;
+}
+
+/* Google Button */
+.google-btn-figma {
+    width: 100%;
+    padding: 12px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s;
+}
+
+.google-btn-figma:hover {
+    background: #f5f5f5;
+    border-color: #ccc;
+}
+
+.google-btn-figma img {
+    width: 20px;
+    height: 20px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 900px) {
+    .auth-container-figma {
+        grid-template-columns: 1fr;
+        padding: 40px;
+        gap: 40px;
+    }
+
+    .auth-welcome {
+        text-align: center;
+        padding-right: 0;
+    }
+
+    .welcome-illustration {
+        margin: 0 auto;
+    }
+
+    .auth-tabs {
+        justify-content: center;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-tabs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .auth-welcome h1 {
+        font-size: 32px;
+    }
+}

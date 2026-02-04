@@ -1,0 +1,223 @@
+/* ========== CHECKOUT PAGE - FIGMA STYLE ========== */
+.checkout-page-figma {
+    background-color: #fff;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.checkout-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.crumb-item {
+    color: #999;
+    cursor: default;
+}
+
+.breadcrumb .current {
+    color: #000;
+    font-weight: 500;
+}
+
+/* Checkout Content */
+.checkout-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+}
+
+/* Billing Form */
+.billing-form h2 {
+    font-size: 28px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: none;
+    border-radius: 4px;
+    background: #f5f5f5;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.form-group input:focus {
+    background: #fff;
+    box-shadow: 0 0 0 1px #87C1E4;
+    /* Light blue focus */
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    margin-top: 16px;
+}
+
+.checkbox-item input {
+    width: 18px;
+    height: 18px;
+    accent-color: #87C1E4;
+    /* Blue check */
+}
+
+/* Order Summary */
+.order-summary-checkout {
+    background: #fff;
+    padding-top: 60px;
+    /* Align with form visually */
+}
+
+/* Order Items */
+.order-items {
+    margin-bottom: 20px;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    /* No border in this design apparently, or very subtle */
+}
+
+.item-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.item-info img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    background: #fff;
+}
+
+.item-info span {
+    font-size: 14px;
+    color: #333;
+}
+
+.item-price {
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+}
+
+/* Summary Lines */
+.summary-lines {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.summary-line.total {
+    font-weight: 500;
+    font-size: 15px;
+    margin-top: 8px;
+}
+
+/* Payment Methods */
+.payment-methods {
+    margin-bottom: 40px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+}
+
+.payment-option input {
+    width: 18px;
+    height: 18px;
+    accent-color: #000;
+}
+
+.payment-icons {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.payment-icons img {
+    height: 16px;
+    width: auto;
+}
+
+/* Action Buttons - Light Blue Style */
+.checkout-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+}
+
+.action-btn-clean {
+    padding: 12px 40px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    background: #87C1E4;
+    /* Light Blue */
+    color: #fff;
+}
+
+.action-btn-clean:hover {
+    background: #6baed6;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 900px) {
+    .checkout-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-top: 20px;
+    }
+}

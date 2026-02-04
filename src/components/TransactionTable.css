@@ -1,0 +1,80 @@
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.transaction-table th {
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.transaction-table td {
+    padding: 16px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-main);
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-badge.paid {
+    background-color: #e6f9f3;
+    color: #00b69b;
+}
+
+.status-badge.pending {
+    background-color: #f3f0ff;
+    color: #9333ea;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.page-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.2s;
+}
+
+.page-btn:hover {
+    border-color: #3b82f6;
+    color: #3b82f6;
+}
+
+.page-btn.active {
+    background-color: #e0f2fe;
+    color: #3b82f6;
+    border-color: #3b82f6;
+}
+
+.page-dots {
+    color: var(--text-muted);
+}
