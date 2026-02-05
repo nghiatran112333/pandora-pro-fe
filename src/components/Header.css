@@ -1,26 +1,73 @@
 .header {
-    height: 64px;
-    background-color: var(--header-bg);
+    height: 72px;
+    /* Slightly taller for breathing room */
+    background: rgba(255, 255, 255, 0.85);
+    /* Glass base */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 40px;
+    padding: 0 32px;
     position: sticky;
     top: 0;
-    z-index: 100;
-    transition: background-color 0.3s, border-color 0.3s;
+    z-index: 40;
+    transition: all 0.3s ease;
+}
+
+.dark-theme .header {
+    background: rgba(15, 23, 42, 0.85);
+    /* Dark glass */
 }
 
 .header-search {
+    flex: 1;
     display: flex;
     align-items: center;
-    background-color: var(--main-bg);
-    padding: 8px 16px;
-    border-radius: 8px;
+    background-color: var(--bg-input);
+    padding: 10px 16px;
+    border-radius: 12px;
     gap: 12px;
-    width: 400px;
-    border: 1px solid var(--border-color);
+    width: 380px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.menu-btn-mobile {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-main);
+    padding: 4px;
+}
+
+@media (max-width: 1024px) {
+    .menu-btn-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .search-box {
+        max-width: 200px;
+    }
+
+    .header-search {
+        width: auto;
+        /* Allow shrink */
+    }
+}
+
+.header-search:focus-within {
+    background-color: #fff;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.dark-theme .header-search:focus-within {
+    background-color: var(--card-bg);
 }
 
 .header-search input {
@@ -30,6 +77,7 @@
     width: 100%;
     color: var(--text-main);
     font-size: 14px;
+    font-weight: 400;
 }
 
 .header-search input::placeholder {
@@ -39,85 +87,111 @@
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
 }
 
 .theme-toggle,
 .icon-btn-ghost {
-    background: none;
+    background: transparent;
     border: none;
     color: var(--text-muted);
     cursor: pointer;
     display: flex;
     align-items: center;
-    padding: 8px;
-    border-radius: 8px;
-    transition: background-color 0.2s;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    transition: all 0.2s;
+    position: relative;
 }
 
 .theme-toggle:hover,
 .icon-btn-ghost:hover {
-    background-color: var(--main-bg);
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--accent-blue);
+}
+
+.dark-theme .theme-toggle:hover,
+.dark-theme .icon-btn-ghost:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .notification-wrapper {
     position: relative;
-    color: var(--text-muted);
-    cursor: pointer;
-    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.notification-wrapper .badge {
+.badge {
     position: absolute;
-    top: 4px;
-    right: 4px;
-    background-color: #3b82f6;
+    top: 6px;
+    right: 6px;
+    background-color: var(--accent-red);
     color: #fff;
     font-size: 10px;
-    width: 16px;
+    font-weight: 700;
+    min-width: 16px;
     height: 16px;
-    border-radius: 50%;
+    border-radius: 8px;
+    /* Capsule for wider numbers */
+    padding: 0 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 2px solid var(--header-bg);
+    /* Cutout effect */
 }
 
+/* User Profile - Premium Pill Style */
 .user-profile {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 4px 8px;
-    border-radius: 8px;
+    gap: 10px;
+    padding: 6px 6px 6px 12px;
+    border-radius: 99px;
+    /* Pill shape */
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
+    border: 1px solid transparent;
 }
 
 .user-profile:hover {
-    background-color: var(--main-bg);
+    background-color: var(--bg-input);
+    border-color: var(--border-color);
 }
 
 .user-avatar {
-    width: 32px;
-    height: 32px;
-    background-color: #3b82f6;
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #a855f7 0%, #d946ef 100%);
     color: #fff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    font-size: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(168, 85, 247, 0.3);
 }
 
 .user-info {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    flex-direction: column;
+    align-items: flex-end;
+    /* Align right for cleaner look next to avatar? No, keep standard */
+    line-height: 1.2;
+    margin-right: 4px;
 }
 
 .user-name {
     font-size: 14px;
     font-weight: 600;
     color: var(--text-main);
+}
+
+.user-role {
+    font-size: 11px;
+    color: var(--text-muted);
 }

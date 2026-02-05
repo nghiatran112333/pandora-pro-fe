@@ -56,6 +56,29 @@ const OrderDetails = () => {
                     </div>
                 </div>
 
+                <div className="order-status-timeline-card">
+                    <div className="timeline-steps">
+                        {[
+                            { label: 'Đã xác nhận', icon: '📝', date: '23/01, 09:00', status: 'completed' },
+                            { label: 'Đang xử lý', icon: '⚙️', date: '23/01, 10:30', status: 'completed' },
+                            { label: 'Đang giao hàng', icon: '🚚', date: '24/01, 08:15', status: 'active' },
+                            { label: 'Đã nhận hàng', icon: '🏠', date: '--:--', status: 'pending' }
+                        ].map((step, idx) => (
+                            <div key={idx} className={`timeline-step ${step.status}`}>
+                                <div className="step-icon-wrapper">
+                                    <span className="step-icon">{step.icon}</span>
+                                    {step.status === 'completed' && <div className="step-check">✓</div>}
+                                </div>
+                                <div className="step-info">
+                                    <span className="step-label">{step.label}</span>
+                                    <span className="step-date">{step.date}</span>
+                                </div>
+                                {idx < 3 && <div className="step-line"></div>}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
                 <div className="details-grid">
                     <div className="main-details">
                         <div className="details-card items-card">

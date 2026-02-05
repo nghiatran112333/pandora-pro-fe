@@ -1,8 +1,9 @@
-import React, { useLayoutEffect } from 'react';
+﻿import React, { useLayoutEffect } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import PublicLayout from './components/PublicLayout';
 import AdminLayout from './components/AdminLayout';
+import { AdminRoute, ProtectedRoute, GuestRoute } from './components/ProtectedRoute';
 
 // Pages
 import Dashboard from './pages/Dashboard';
@@ -29,6 +30,11 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 import StoreLocator from './pages/StoreLocator';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
+import SearchResults from './pages/SearchResults';
+
+import Policies from './pages/Policies';
 
 
 
@@ -50,29 +56,36 @@ function App() {
     <Wrapper>
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
-          {/* Public Pages */}
+          {/* Public Pages - No auth required */}
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/wishlist" element={<Wishlist />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/product-detail" element={<ProductDetail />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/user-orders" element={<UserOrders />} />
-            <Route path="/user-orders/:id" element={<OrderDetails />} />
             <Route path="/catalog" element={<Catalog />} />
-            <Route path="/checkout-success" element={<CheckoutSuccess />} />
+            <Route path="/product-detail" element={<ProductDetail />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/stores" element={<StoreLocator />} />
+            <Route path="/search" element={<SearchResults />} />
+
+            <Route path="/policies" element={<Policies />} />
+
+            {/* Protected User Pages - Auth required */}
+            <Route path="/wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
+            <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+            <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
+            <Route path="/checkout-success" element={<ProtectedRoute><CheckoutSuccess /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            <Route path="/user-orders" element={<ProtectedRoute><UserOrders /></ProtectedRoute>} />
+            <Route path="/user-orders/:id" element={<ProtectedRoute><OrderDetails /></ProtectedRoute>} />
           </Route>
 
-          {/* Auth Pages */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          {/* Auth Pages - Only for guests (not logged in) */}
+          <Route path="/login" element={<GuestRoute><Login /></GuestRoute>} />
+          <Route path="/register" element={<GuestRoute><Register /></GuestRoute>} />
+          <Route path="/forgot-password" element={<GuestRoute><ForgotPassword /></GuestRoute>} />
+          <Route path="/reset-password" element={<GuestRoute><ResetPassword /></GuestRoute>} />
 
-          {/* Admin Pages */}
-          <Route path="/admin" element={<AdminLayout />}>
+          {/* Admin Pages - Admin role required */}
+          <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
             <Route index element={<Dashboard />} />
             <Route path="orders" element={<Orders />} />
             <Route path="products" element={<Products />} />

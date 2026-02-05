@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Search, Heart, ShoppingCart, User, ChevronDown, ChevronRight, LogOut, Package, Star, UserCircle, Menu, X } from 'lucide-react';
+import { Search, Heart, ShoppingCart, User, ChevronDown, ChevronRight, LogOut, Package, Star, UserCircle, Menu, X, LogIn } from 'lucide-react';
 import { useNavigate, Link, NavLink } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import { useAuth } from '../context/AuthContext';
 import { Sun, Moon } from 'lucide-react';
 import './Navbar.css';
 
@@ -11,6 +12,7 @@ import { products } from '../data/products';
 const Navbar = () => {
     const navigate = useNavigate();
     const { cartCount } = useCart();
+    const { isAuthenticated, user, logout } = useAuth();
     const [showProductsDropdown, setShowProductsDropdown] = useState(false);
     const [showUserDropdown, setShowUserDropdown] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
@@ -21,7 +23,7 @@ const Navbar = () => {
 
     const handleSearch = () => {
         if (searchTerm.trim()) {
-            navigate(`/catalog?q=${encodeURIComponent(searchTerm)}`);
+            navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
             setShowMobileMenu(false);
             setShowSearchDropdown(false);
         }
@@ -43,27 +45,67 @@ const Navbar = () => {
         }
     };
 
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+        setShowUserDropdown(false);
+    };
+
     const productCategories = [
-        { name: 'Iphone', hasSubmenu: true },
-        { name: 'Lap Top', hasSubmenu: true },
-        { name: 'Tivi', hasSubmenu: false },
-        { name: 'Mini Speakers', hasSubmenu: false },
-        { name: 'Headphones', hasSubmenu: false },
-        { name: 'Ipad', hasSubmenu: false },
+        {
+            name: 'iPhone',
+            icon: '📱',
+            description: 'Điện thoại thông minh',
+            items: ['iPhone 15 Pro Max', 'iPhone 15 Pro', 'iPhone 15', 'iPhone 14']
+        },
+        {
+            name: 'MacBook',
+            icon: '💻',
+            description: 'Laptop cao cấp',
+            items: ['MacBook Pro M3', 'MacBook Air M3', 'MacBook Pro 14"', 'MacBook Air 13"']
+        },
+        {
+            name: 'iPad',
+            icon: '📲',
+            description: 'Máy tính bảng',
+            items: ['iPad Pro M2', 'iPad Air', 'iPad mini', 'iPad 10th Gen']
+        },
+        {
+            name: 'Apple Watch',
+            icon: '⌚',
+            description: 'Đồng hồ thông minh',
+            items: ['Watch Ultra 2', 'Watch Series 9', 'Watch SE']
+        },
+        {
+            name: 'AirPods',
+            icon: '🎧',
+            description: 'Tai nghe không dây',
+            items: ['AirPods Pro 2', 'AirPods 3', 'AirPods Max']
+        },
+        {
+            name: 'Phụ kiện',
+            icon: '🔌',
+            description: 'Phụ kiện chính hãng',
+            items: ['Sạc MagSafe', 'Ốp lưng', 'Cáp & Adapter']
+        },
+    ];
+
+    const featuredProducts = [
+        { name: 'iPhone 15 Pro Max', price: '34.990.000đ', img: 'https://images.unsplash.com/photo-1696446702183-a12c8b68b1f8?w=100', tag: 'Mới' },
+        { name: 'MacBook Pro M3', price: '49.990.000đ', img: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=100', tag: 'Hot' },
     ];
 
     const userMenuItems = [
         { icon: UserCircle, label: 'Thông tin tài khoản', path: '/profile' },
         { icon: Package, label: 'Đơn hàng của tôi', path: '/user-orders' },
         { icon: Star, label: 'Đánh giá', path: '/profile' },
-        { icon: LogOut, label: 'Đăng xuất', path: '/login', isLogout: true },
     ];
 
     return (
         <>
             {/* Blue Banner */}
             <div className="top-banner-bar">
-                Pandora Pro - Nơi công nghệ đỉnh cao hội tụ, kiến tạo phong cách sống thời thượng.
+                ✨ Pandora Pro - Nơi công nghệ đỉnh cao hội tụ, kiến tạo phong cách sống thời thượng
             </div>
 
             <header className="public-header">
@@ -82,9 +124,9 @@ const Navbar = () => {
                         <NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setShowMobileMenu(false)} >Trang Chủ</NavLink>
                         <NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setShowMobileMenu(false)}>Giới Thiệu</NavLink>
 
-                        {/* Products Dropdown */}
+                        {/* Products Mega Menu */}
                         <div
-                            className="nav-dropdown-wrapper"
+                            className="nav-dropdown-wrapper mega-menu-wrapper"
                             onMouseEnter={() => setShowProductsDropdown(true)}
                             onMouseLeave={() => setShowProductsDropdown(false)}
                         >
@@ -92,13 +134,58 @@ const Navbar = () => {
                                 Sản Phẩm <ChevronDown size={14} />
                             </NavLink>
                             {showProductsDropdown && (
-                                <div className="dropdown-menu products-dropdown">
-                                    {productCategories.map((cat, idx) => (
-                                        <div key={idx} className="dropdown-item" onClick={() => { navigate('/catalog'); setShowMobileMenu(false); }}>
-                                            <span>{cat.name}</span>
-                                            {cat.hasSubmenu && <ChevronRight size={14} />}
+                                <div className="mega-menu">
+                                    <div className="mega-menu-content">
+                                        {/* Categories Grid */}
+                                        <div className="mega-menu-categories">
+                                            <h4 className="mega-menu-title">Danh mục sản phẩm</h4>
+                                            <div className="categories-grid">
+                                                {productCategories.map((cat, idx) => (
+                                                    <div
+                                                        key={idx}
+                                                        className="category-card"
+                                                        onClick={() => { navigate('/catalog'); setShowMobileMenu(false); setShowProductsDropdown(false); }}
+                                                    >
+                                                        <span className="category-icon">{cat.icon}</span>
+                                                        <div className="category-info">
+                                                            <span className="category-name">{cat.name}</span>
+                                                            <span className="category-desc">{cat.description}</span>
+                                                        </div>
+                                                        <ChevronRight size={16} className="category-arrow" />
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
-                                    ))}
+
+                                        {/* Featured Products */}
+                                        <div className="mega-menu-featured">
+                                            <h4 className="mega-menu-title">Sản phẩm nổi bật</h4>
+                                            <div className="featured-products">
+                                                {featuredProducts.map((product, idx) => (
+                                                    <div
+                                                        key={idx}
+                                                        className="featured-product-card"
+                                                        onClick={() => { navigate('/catalog'); setShowProductsDropdown(false); }}
+                                                    >
+                                                        <div className="featured-img-wrapper">
+                                                            <img src={product.img} alt={product.name} />
+                                                            {product.tag && <span className="product-tag">{product.tag}</span>}
+                                                        </div>
+                                                        <div className="featured-info">
+                                                            <span className="featured-name">{product.name}</span>
+                                                            <span className="featured-price">{product.price}</span>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            <button
+                                                className="view-all-btn-mega"
+                                                onClick={() => { navigate('/catalog'); setShowProductsDropdown(false); }}
+                                            >
+                                                Xem tất cả sản phẩm <ChevronRight size={16} />
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -127,7 +214,7 @@ const Navbar = () => {
                                             key={result.id}
                                             className="search-result-item"
                                             onClick={() => {
-                                                navigate(`/catalog?q=${encodeURIComponent(result.name)}`);
+                                                navigate(`/search?q=${encodeURIComponent(result.name)}`);
                                                 setSearchTerm(result.name);
                                                 setShowSearchDropdown(false);
                                             }}
@@ -148,6 +235,7 @@ const Navbar = () => {
                         <div className="theme-toggle-btn" onClick={toggleTheme}>
                             {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
                         </div>
+
                         <NavLink to="/wishlist" className="tool-link">
                             <Heart size={20} />
                         </NavLink>
@@ -156,30 +244,47 @@ const Navbar = () => {
                             {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
                         </div>
 
-                        {/* User Dropdown */}
-                        <div
-                            className="user-dropdown-wrapper"
-                            onMouseEnter={() => setShowUserDropdown(true)}
-                            onMouseLeave={() => setShowUserDropdown(false)}
-                        >
-                            <div className="user-icon-circle">
-                                <User size={18} />
-                            </div>
-                            {showUserDropdown && (
-                                <div className="dropdown-menu user-dropdown">
-                                    {userMenuItems.map((item, idx) => (
-                                        <div
-                                            key={idx}
-                                            className={`dropdown-item ${item.isLogout ? 'logout' : ''}`}
-                                            onClick={() => { navigate(item.path); setShowUserDropdown(false); }}
-                                        >
-                                            <item.icon size={16} />
-                                            <span>{item.label}</span>
-                                        </div>
-                                    ))}
+                        {/* User Options */}
+                        {isAuthenticated ? (
+                            <div
+                                className="user-dropdown-wrapper"
+                                onMouseEnter={() => setShowUserDropdown(true)}
+                                onMouseLeave={() => setShowUserDropdown(false)}
+                            >
+                                <div className="user-icon-circle">
+                                    <User size={18} />
                                 </div>
-                            )}
-                        </div>
+                                {showUserDropdown && (
+                                    <div className="dropdown-menu user-dropdown">
+                                        <div className="user-dropdown-header">
+                                            <span className="user-name-display">{user.name}</span>
+                                            <span className="user-role-display">{user.role === 'admin' ? 'Quản trị viên' : 'Thành viên'}</span>
+                                        </div>
+                                        {userMenuItems.map((item, idx) => (
+                                            <div
+                                                key={idx}
+                                                className="dropdown-item"
+                                                onClick={() => { navigate(item.path); setShowUserDropdown(false); }}
+                                            >
+                                                <item.icon size={16} />
+                                                <span>{item.label}</span>
+                                            </div>
+                                        ))}
+                                        <div
+                                            className="dropdown-item logout"
+                                            onClick={handleLogout}
+                                        >
+                                            <LogOut size={16} />
+                                            <span>Đăng xuất</span>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <Link to="/login" className="login-btn-header">
+                                <span className="login-text">Đăng nhập</span>
+                            </Link>
+                        )}
                     </div>
                 </div>
             </header>

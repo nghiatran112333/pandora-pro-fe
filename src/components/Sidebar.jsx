@@ -10,11 +10,12 @@ import {
   Tag,
   Mail,
   HelpCircle,
-  Settings
+  Settings,
+  X
 } from 'lucide-react';
 import './Sidebar.css';
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, onClose }) => {
   const menuItems = [
     { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/' },
     { icon: <ShoppingBag size={20} />, label: 'Đơn Hàng', path: '/orders', badge: 16 },
@@ -29,12 +30,15 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
       <div className="sidebar-logo">
         <div className="logo-icon">
           <Package color="#fff" fill="#fff" />
         </div>
         <span>PandoraPro</span>
+        <button className="close-sidebar-btn" onClick={onClose}>
+          <X size={24} />
+        </button>
       </div>
 
       <nav className="sidebar-nav">

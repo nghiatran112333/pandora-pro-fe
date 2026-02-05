@@ -2,24 +2,12 @@ import React, { useState } from 'react';
 import { Search, Download, Plus, Filter, Edit, Trash2, Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../components/Modal';
+import { products } from '../data/products';
 import './Products.css';
 
 const Products = () => {
     const navigate = useNavigate();
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-
-    const products = [
-        { id: 1, name: 'Iphone 13 Pro', stock: '96 sản phẩm', color: 'Xanh Dương', price: '21.990.000 Đ', rating: '5.0 (32 lượt)', image: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?w=50&h=50&fit=crop', selected: true },
-        { id: 2, name: 'Iphone 14', stock: '56 sản phẩm', color: 'Hồng', price: '11.020.000 Đ', rating: '4.8 (24 lượt)', image: 'https://images.unsplash.com/photo-1663499482523-1c0c1bae4ce1?w=50&h=50&fit=crop', selected: true },
-        { id: 3, name: 'Iphone 14', stock: '78 sản phẩm', color: 'Xanh Dương', price: '11.020.000 Đ', rating: '5.0 (54 lượt)', image: 'https://images.unsplash.com/photo-1663499482523-1c0c1bae4ce1?w=50&h=50&fit=crop', selected: true },
-        { id: 4, name: 'Tai nghe AirPad Pro 2', stock: '32 sản phẩm', color: 'Trắng', price: '4.990.000 Đ', rating: '4.5 (31 lượt)', image: 'https://images.unsplash.com/photo-1588423770186-80f3ef0819ed?w=50&h=50&fit=crop', selected: true },
-        { id: 5, name: 'Macbook Air 13 M4 2025', stock: '32 sản phẩm', color: 'Bạc', price: '23.990.000 Đ', rating: '4.9 (22 lượt)', image: 'https://images.unsplash.com/photo-1611186871348-b1ec696e52c9?w=50&h=50&fit=crop', selected: true },
-        { id: 6, name: 'Tai nghe AirPad Pro 2', stock: '96 sản phẩm', color: 'Đen', price: '4.990.000 Đ', rating: '5.0 (32 lượt)', image: 'https://images.unsplash.com/photo-1588423770186-80f3ef0819ed?w=50&h=50&fit=crop' },
-        { id: 7, name: 'Macbook Air 13 M4 2025', stock: '56 sản phẩm', color: 'Xám', price: '23.990.000 Đ', rating: '4.8 (24 lượt)', image: 'https://images.unsplash.com/photo-1611186871348-b1ec696e52c9?w=50&h=50&fit=crop' },
-        { id: 8, name: 'Iphone 13 Pro', stock: 'Hết hàng', color: 'Đen', price: '21.990.000 Đ', rating: '5.0 (54 lượt)', image: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?w=50&h=50&fit=crop', outOfStock: true },
-        { id: 9, name: 'Macbook Air 13 M4 2025', stock: 'Hết hàng', color: 'không', price: '23.990.000 Đ', rating: '4.5 (31 lượt)', image: 'https://images.unsplash.com/photo-1611186871348-b1ec696e52c9?w=50&h=50&fit=crop', outOfStock: true },
-        { id: 10, name: 'Iphone 14', stock: 'Hết hàng', color: 'Trắng', price: '11.020.000 Đ', rating: '4.9 (22 lượt)', image: 'https://images.unsplash.com/photo-1663499482523-1c0c1bae4ce1?w=50&h=50&fit=crop', outOfStock: true },
-    ];
 
     return (
         <div className="products-page">
@@ -63,22 +51,31 @@ const Products = () => {
                         </thead>
                         <tbody>
                             {products.map((p) => (
-                                <tr key={p.id} className={p.selected ? 'selected' : ''}>
+                                <tr key={p.id}>
                                     <td><input type="checkbox" checked={p.selected || false} readOnly /></td>
-                                    <td className="product-cell">
+                                    <td className="product-cell" data-label="Sản phẩm">
                                         <img src={p.image} alt={p.name} className="p-img" />
                                         <span className="p-name">{p.name}</span>
                                     </td>
-                                    <td>
-                                        {p.outOfStock ? (
-                                            <span className="badge-out">Hết hàng</span>
-                                        ) : (
-                                            <span className="p-stock">{p.stock}</span>
-                                        )}
+                                    <td data-label="Tồn kho">
+                                        <div className={`stock-badge ${p.outOfStock || p.stock === 0 ? 'out' : 'in'}`}>
+                                            {p.outOfStock || p.stock === 0 ? 'Hết hàng' : `${p.stock} sản phẩm`}
+                                        </div>
                                     </td>
-                                    <td className="p-color">{p.color}</td>
-                                    <td className="p-price">{p.price}</td>
-                                    <td className="p-rating">{p.rating}</td>
+                                    <td className="p-color" data-label="Màu sắc">{p.color}</td>
+                                    <td className="p-price" data-label="Giá">{p.price.toLocaleString()}đ</td>
+                                    <td data-label="Đánh giá">
+                                        <div className="p-rating">
+                                            <Star size={14} className="rating-star" />
+                                            <span>{p.rating} ({p.reviews} lượt)</span>
+                                        </div>
+                                    </td>
+                                    <td data-label="Hành động">
+                                        <div className="action-menu">
+                                            <button className="icon-btn" title="Edit"><Edit size={16} /></button>
+                                            <button className="icon-btn delete" onClick={() => setIsDeleteOpen(true)} title="Delete"><Trash2 size={16} /></button>
+                                        </div>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

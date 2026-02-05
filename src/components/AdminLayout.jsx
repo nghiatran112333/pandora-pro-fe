@@ -7,11 +7,13 @@ const pageVariants = {
 };
 
 const AdminLayout = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+
     return (
         <div className="layout">
-            <Sidebar />
+            <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
             <div className="main-content">
-                <Header />
+                <Header onMenuClick={() => setIsSidebarOpen(true)} />
                 <main className="dashboard-container">
                     <motion.div
                         initial="initial"
@@ -23,6 +25,20 @@ const AdminLayout = () => {
                         <Outlet />
                     </motion.div>
                 </main>
+                {/* Mobile Overlay */}
+                {isSidebarOpen && (
+                    <div
+                        className="sidebar-overlay"
+                        onClick={() => setIsSidebarOpen(false)}
+                        style={{
+                            position: 'fixed',
+                            inset: 0,
+                            backgroundColor: 'rgba(0,0,0,0.5)',
+                            zIndex: 40,
+                            backdropFilter: 'blur(4px)'
+                        }}
+                    />
+                )}
             </div>
         </div>
     );

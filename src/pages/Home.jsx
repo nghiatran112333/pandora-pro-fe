@@ -1,17 +1,62 @@
-import React, { useState } from 'react';
-import { Search, Heart, ShoppingCart, User, ChevronRight, ChevronLeft, Star, Truck, Headphones as HeadphonesIcon, ShieldCheck } from 'lucide-react';
-import { useNavigate }
-    from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Search, Heart, ShoppingCart, User, ChevronRight, ChevronLeft, Star, Truck, Headphones as HeadphonesIcon, ShieldCheck, Sparkles, Zap, Play } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../context/CartContext';
 import ScrollReveal from '../components/ScrollReveal';
 import SectionHeader from '../components/SectionHeader';
 import ProductCard from '../components/ProductCard';
+import BestSellers from '../components/BestSellers';
+import { products } from '../data/products';
 import './Home.css';
 
 
 const Home = () => {
     const navigate = useNavigate();
     const { addToCart } = useCart();
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    // Banner slides data
+    const bannerSlides = [
+        {
+            id: 1,
+            subtitle: 'Bộ sưu tập mới nhất',
+            title: 'iPhone 15 Pro Max',
+            highlight: 'Giảm 20%',
+            description: 'Titan. Siêu nhẹ. Siêu bền.',
+            image: 'https://pngimg.com/d/iphone_14_PNG23.png',
+            bgGradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            accent: '#a855f7'
+        },
+        {
+            id: 2,
+            subtitle: 'Siêu phẩm công nghệ',
+            title: 'MacBook Pro M3',
+            highlight: 'Mới ra mắt',
+            description: 'Chip M3 Pro & M3 Max.',
+            image: 'https://pngimg.com/d/macbook_PNG6.png',
+            bgGradient: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)',
+            accent: '#22c55e'
+        },
+        {
+            id: 3,
+            subtitle: 'Trải nghiệm âm thanh',
+            title: 'AirPods Pro 2',
+            highlight: 'Best Seller',
+            description: 'Chống ồn thông minh.',
+            image: 'https://pngimg.com/d/airpods_PNG24.png',
+            bgGradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+            accent: '#ec4899'
+        }
+    ];
+
+    // Auto slide
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % bannerSlides.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, [bannerSlides.length]);
 
     // Countdown State
     const [timeLeft, setTimeLeft] = useState({
@@ -22,7 +67,7 @@ const Home = () => {
     });
 
     // Countdown Logic
-    React.useEffect(() => {
+    useEffect(() => {
         const timer = setInterval(() => {
             setTimeLeft(prev => {
                 if (prev.seconds > 0) {
@@ -51,40 +96,195 @@ const Home = () => {
         { name: 'Laptop', img: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=200' },
     ];
 
-    const products = [
-        { id: 101, name: 'Iphone 14', price: 11020000, oldPrice: 15020000, rating: 5, reviews: 65, img: 'https://images.unsplash.com/photo-1663499482523-1c0c1bae4ce1?w=300' },
-        { id: 102, name: 'Tai nghe AirPad Pro 2', price: 4990000, oldPrice: 5530000, rating: 4, reviews: 33, img: 'https://images.unsplash.com/photo-1588423770186-80f3ef0819ed?w=300' },
-        { id: 103, name: 'RGB Liquid CPU Cooler', price: 2990000, oldPrice: 3440000, rating: 5, reviews: 45, img: 'https://images.unsplash.com/photo-1588506183812-96da202a0b7a?w=300' },
-        { id: 104, name: 'Macbook Air 13 M4 2023', price: 23990000, oldPrice: 26990000, rating: 5, reviews: 85, img: 'https://images.unsplash.com/photo-1611186871348-b1ec696e52c9?w=300' },
-    ];
+    const currentBanner = bannerSlides[currentSlide];
 
     return (
-        <div className="home-page">
+        <div className="home-page-figma">
+            {/* Hero Section - Exactly like Figma */}
             <main className="home-container">
-                {/* Hero Banner */}
-                <ScrollReveal>
-                    <section className="hero-banner">
-                        <div className="hero-content">
-                            <div className="hero-text">
-                                <div className="hero-sub">
-                                    <span className="apple-icon" role="img" aria-label="Apple">🍎</span> Bộ sưu tập Iphone 14
-                                </div>
-                                <h1 className="hero-title">Ưu đãi đặc biệt<br />lên tới 20%</h1>
-                                <a href="#" className="buy-now">Mua Ngay <ChevronRight size={16} /></a>
-                                <div className="hero-pagination">
-                                    <span className="dot active"></span>
-                                    <span className="dot"></span>
-                                    <span className="dot"></span>
-                                    <span className="dot"></span>
-                                    <span className="dot"></span>
-                                </div>
-                            </div>
-                            <div className="hero-image">
-                                <img src="https://images.unsplash.com/photo-1678652197831-2d180705cd2c?q=80&w=600&auto=format&fit=crop" alt="Iphone 14 Pro - Bộ sưu tập mới nhất" />
-                            </div>
+                {/* Premium Hero Banner */}
+                <section className="hero-banner-premium" style={{ background: currentBanner.bgGradient }}>
+                    {/* Animated Background Elements */}
+                    <div className="hero-bg-elements">
+                        {[...Array(6)].map((_, i) => (
+                            <motion.div
+                                key={i}
+                                className="floating-orb"
+                                style={{
+                                    width: 100 + i * 50,
+                                    height: 100 + i * 50,
+                                    left: `${10 + i * 15}% `,
+                                    top: `${20 + (i % 3) * 20}% `,
+                                }}
+                                animate={{
+                                    y: [0, -20, 0],
+                                    x: [0, 10, 0],
+                                    scale: [1, 1.05, 1],
+                                }}
+                                transition={{
+                                    duration: 4 + i,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                    delay: i * 0.5
+                                }}
+                            />
+                        ))}
+                    </div>
+
+                    {/* Main Content */}
+                    <div className="hero-premium-content">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={currentSlide}
+                                className="hero-text-premium"
+                                initial={{ opacity: 0, x: -50 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 50 }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                <motion.div
+                                    className="hero-badge"
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.2 }}
+                                >
+                                    <Sparkles size={16} />
+                                    <span>{currentBanner.subtitle}</span>
+                                </motion.div>
+
+                                <motion.h1
+                                    className="hero-title-premium"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                >
+                                    {currentBanner.title}
+                                </motion.h1>
+
+                                <motion.div
+                                    className="hero-highlight"
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: 0.4 }}
+                                    style={{ background: currentBanner.accent }}
+                                >
+                                    <Zap size={18} />
+                                    {currentBanner.highlight}
+                                </motion.div>
+
+                                <motion.p
+                                    className="hero-description"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.5 }}
+                                >
+                                    {currentBanner.description}
+                                </motion.p>
+
+                                <motion.div
+                                    className="hero-actions"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.6 }}
+                                >
+                                    <motion.button
+                                        className="hero-btn-primary"
+                                        whileHover={{ scale: 1.05, y: -2 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        onClick={() => navigate('/catalog')}
+                                    >
+                                        Mua Ngay
+                                        <ChevronRight size={20} />
+                                    </motion.button>
+                                    <motion.button
+                                        className="hero-btn-secondary"
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        onClick={() => navigate('/catalog')}
+                                    >
+                                        Xem Chi Tiết
+                                    </motion.button>
+                                </motion.div>
+
+                                {/* Stats */}
+                                <motion.div
+                                    className="hero-stats"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.7 }}
+                                >
+                                    <div className="stat-item">
+                                        <span className="stat-value">50K+</span>
+                                        <span className="stat-label">Khách hàng</span>
+                                    </div>
+                                    <div className="stat-divider" />
+                                    <div className="stat-item">
+                                        <span className="stat-value">4.9</span>
+                                        <span className="stat-label">Đánh giá</span>
+                                    </div>
+                                    <div className="stat-divider" />
+                                    <div className="stat-item">
+                                        <span className="stat-value">100%</span>
+                                        <span className="stat-label">Chính hãng</span>
+                                    </div>
+                                </motion.div>
+                            </motion.div>
+                        </AnimatePresence>
+
+                        {/* Product Image */}
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={currentSlide + '-image'}
+                                className="hero-image-premium"
+                                initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+                                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                                exit={{ opacity: 0, scale: 0.8, rotate: 5 }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                <div className="image-glow" style={{ background: currentBanner.accent }} />
+                                <motion.img
+                                    src={currentBanner.image}
+                                    alt={currentBanner.title}
+                                    animate={{ y: [0, -15, 0] }}
+                                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                                />
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+
+                    {/* Slide Navigation */}
+                    <div className="hero-navigation">
+                        <div className="slide-dots">
+                            {bannerSlides.map((_, index) => (
+                                <motion.button
+                                    key={index}
+                                    className={`slide - dot ${index === currentSlide ? 'active' : ''} `}
+                                    onClick={() => setCurrentSlide(index)}
+                                    whileHover={{ scale: 1.2 }}
+                                    whileTap={{ scale: 0.9 }}
+                                />
+                            ))}
                         </div>
-                    </section>
-                </ScrollReveal>
+                        <div className="slide-arrows">
+                            <motion.button
+                                className="slide-arrow"
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                onClick={() => setCurrentSlide((prev) => (prev - 1 + bannerSlides.length) % bannerSlides.length)}
+                            >
+                                <ChevronLeft size={24} />
+                            </motion.button>
+                            <motion.button
+                                className="slide-arrow"
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                onClick={() => setCurrentSlide((prev) => (prev + 1) % bannerSlides.length)}
+                            >
+                                <ChevronRight size={24} />
+                            </motion.button>
+                        </div>
+                    </div>
+                </section>
 
                 {/* Danh mục phổ biến */}
                 <ScrollReveal delay={0.2}>
@@ -94,7 +294,7 @@ const Home = () => {
                             {categories.map((cat, i) => (
                                 <div key={i} className="cat-item" onClick={() => navigate('/catalog')}>
                                     <div className="cat-icon">
-                                        <img src={cat.img} alt={`Danh mục ${cat.name}`} loading="lazy" />
+                                        <img src={cat.img} alt={`Danh mục ${cat.name} `} loading="lazy" />
                                     </div>
                                     <span>{cat.name}</span>
                                 </div>
@@ -103,21 +303,58 @@ const Home = () => {
                     </section>
                 </ScrollReveal>
 
-                {/* Video Giới Thiệu Sản Phẩm (Safer Implementation) */}
-                <section className="intro-video-section section">
-                    <SectionHeader title="Giới thiệu sản phẩm" />
-                    <div className="video-container">
-                        <iframe
-                            width="100%"
-                            height="100%"
-                            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                            title="Product Intro Video"
-                            style={{ border: 0 }}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        ></iframe>
-                    </div>
-                </section>
+                {/* Video Giới Thiệu - Premium Design */}
+                <ScrollReveal delay={0.1}>
+                    <section className="intro-video-section-premium">
+                        <div className="video-content-wrapper">
+                            <div className="video-text-side">
+                                <div className="video-label">VIDEO GIỚI THIỆU</div>
+                                <h2>Khám phá<br />công nghệ đỉnh cao</h2>
+                                <p>Trải nghiệm các sản phẩm Apple chính hãng với chất lượng tốt nhất và dịch vụ hậu mãi hoàn hảo.</p>
+                                <div className="video-features">
+                                    <div className="video-feature">
+                                        <span className="feature-dot"></span>
+                                        Sản phẩm chính hãng 100%
+                                    </div>
+                                    <div className="video-feature">
+                                        <span className="feature-dot"></span>
+                                        Bảo hành 12 tháng
+                                    </div>
+                                    <div className="video-feature">
+                                        <span className="feature-dot"></span>
+                                        Đổi trả trong 30 ngày
+                                    </div>
+                                </div>
+                                <button className="video-cta-btn" onClick={() => navigate('/catalog')}>
+                                    Xem sản phẩm <ChevronRight size={18} />
+                                </button>
+                            </div>
+                            <div className="video-player-side">
+                                <div className="video-thumbnail-container">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1491933382434-500287f9b54b?w=800&q=80"
+                                        alt="Apple Products"
+                                        className="video-thumbnail-img"
+                                    />
+                                    <div className="video-thumbnail-overlay">
+                                        <a
+                                            href="https://www.youtube.com/watch?v=YQHsXMglC9A"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="play-btn"
+                                        >
+                                            <svg viewBox="0 0 24 24" fill="white" width="36" height="36">
+                                                <path d="M8 5v14l11-7z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div className="video-corner-badge">Xem Video</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </ScrollReveal>
+
 
                 {/* Sản phẩm bán chạy - Blue Background */}
                 <ScrollReveal delay={0.2}>
@@ -127,7 +364,7 @@ const Home = () => {
                             <button className="view-all-btn" onClick={() => navigate('/catalog')}>Xem tất cả</button>
                         </div>
                         <div className="product-grid-figma">
-                            {products.map((p, i) => (
+                            {products.slice(0, 4).map((p, i) => (
                                 <ProductCard key={i} product={p} />
                             ))}
                         </div>
@@ -139,7 +376,7 @@ const Home = () => {
                     <section className="explore-products section">
                         <SectionHeader title="Khám phá sản phẩm của chúng tôi" showArrows />
                         <div className="product-grid-figma">
-                            {[...products, ...products].map((p, i) => (
+                            {products.slice(0, 8).map((p, i) => (
                                 <ProductCard key={i} product={p} />
                             ))}
                         </div>
@@ -182,7 +419,7 @@ const Home = () => {
 
                         <div className="flash-sales-products">
                             <div className="product-grid-figma">
-                                {products.map((p, i) => (
+                                {products.slice(4, 8).map((p, i) => (
                                     <ProductCard key={i} product={p} />
                                 ))}
                             </div>

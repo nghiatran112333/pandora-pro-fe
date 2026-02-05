@@ -1,13 +1,21 @@
 .stat-card {
-    background-color: #fff;
-    border-radius: 12px;
+    background-color: var(--card-bg);
+    border-radius: 16px;
     padding: 24px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
     flex: 1;
     min-width: 240px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.08);
+    /* Lift effect */
 }
 
 .stat-info {
@@ -19,35 +27,49 @@
 .stat-title {
     color: var(--text-muted);
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 11px;
 }
 
 .stat-value {
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 28px;
+    font-weight: 800;
     color: var(--text-main);
+    letter-spacing: -0.5px;
 }
 
 .stat-trend {
     display: flex;
     align-items: center;
-    gap: 4px;
-    font-size: 12px;
+    gap: 6px;
+    font-size: 13px;
     font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+    width: fit-content;
 }
 
 .stat-trend.up {
-    color: #00b69b;
+    color: #10b981;
+    background-color: rgba(16, 185, 129, 0.1);
 }
 
 .stat-trend.down {
-    color: #ee5d50;
+    color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.1);
 }
 
 .stat-icon-wrapper {
     padding: 12px;
-    border-radius: 12px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.stat-card:hover .stat-icon-wrapper {
+    transform: scale(1.1) rotate(5deg);
 }

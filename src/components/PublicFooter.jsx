@@ -38,9 +38,9 @@ const PublicFooter = () => {
                 {/* Column 4: Quick Links */}
                 <div className="footer-col-figma">
                     <h3>Liên kết nhanh</h3>
-                    <a href="#">Chính sách bảo mật</a>
-                    <a href="#">Điều khoản sử dụng</a>
-                    <a href="#">Câu hỏi thường gặp</a>
+                    <Link to="/policies">Chính sách bảo mật</Link>
+                    <Link to="/policies">Điều khoản sử dụng</Link>
+                    <Link to="/policies">Câu hỏi thường gặp</Link>
                     <Link to="/contact">Liên hệ</Link>
                 </div>
 

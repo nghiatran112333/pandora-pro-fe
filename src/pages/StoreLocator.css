@@ -1,225 +1,385 @@
+/* ========== STORE LOCATOR - PREMIUM DESIGN ========== */
 .store-locator-page {
-    background-color: #f8f9fa;
+    background: #f8fafc;
     min-height: 100vh;
-    padding-bottom: 60px;
 }
 
-.locator-header {
-    background: linear-gradient(135deg, #36D1DC 0%, #5B86E5 100%);
-    padding: 60px 20px;
+[data-theme="dark"] .store-locator-page {
+    background: #0f0f12;
+}
+
+/* ========== HERO ========== */
+.store-hero {
+    position: relative;
+    padding: 80px 20px 60px;
+    background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
     text-align: center;
-    color: white;
-    margin-bottom: 40px;
 }
 
-.locator-header h1 {
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.locator-container {
-    max-width: 1200px;
+.store-hero-content {
+    max-width: 800px;
     margin: 0 auto;
-    display: flex;
-    gap: 30px;
+    color: white;
+}
+
+.store-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #667eea;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.store-hero-content h1 {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+}
+
+.store-hero-content h1 span {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.store-hero-content>p {
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ========== SEARCH ========== */
+.store-search-section {
+    max-width: 900px;
+    margin: -30px auto 40px;
     padding: 0 20px;
-    height: 700px;
-    /* Fixed height for dashboard feel */
+    position: relative;
+    z-index: 10;
 }
 
-/* Sidebar */
-.locator-sidebar {
-    width: 40%;
-    background: white;
-    border-radius: 16px;
-    padding: 20px;
+.store-search-container {
     display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
-
-.locator-tools {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
     gap: 12px;
+    background: white;
+    padding: 12px;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
 }
 
-.btn-locate {
+[data-theme="dark"] .store-search-container {
+    background: #1e1e23;
+}
+
+.search-input-wrapper {
+    flex: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 12px;
+    background: #f8fafc;
+    padding: 12px 18px;
+    border-radius: 10px;
+}
+
+[data-theme="dark"] .search-input-wrapper {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.search-input-wrapper svg {
+    color: #94a3b8;
+}
+
+.search-input-wrapper input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    outline: none;
+    color: #1e293b;
+}
+
+[data-theme="dark"] .search-input-wrapper input {
+    color: #f1f5f9;
+}
+
+.locate-btn {
+    display: flex;
+    align-items: center;
     gap: 8px;
-    padding: 12px;
-    background-color: #f0f7ff;
-    color: #0072FF;
-    border: 1px solid #cce5ff;
-    border-radius: 30px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
 }
 
-.btn-locate:hover {
-    background-color: #e6f2ff;
+.locate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
-.search-store {
-    position: relative;
-}
-
-.search-store input {
-    width: 100%;
-    padding: 12px 12px 12px 40px;
-    border: 1px solid #eee;
-    border-radius: 30px;
-    outline: none;
-    font-size: 14px;
-}
-
-.search-store .search-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #999;
-}
-
-.location-error {
-    background: #fff2f2;
-    color: #db4444;
+.location-error-msg {
+    background: #fef2f2;
+    color: #dc2626;
     padding: 10px;
     border-radius: 8px;
-    margin-bottom: 12px;
     font-size: 13px;
     text-align: center;
+    margin-top: 12px;
 }
 
-.store-list {
-    flex: 1;
-    overflow-y: auto;
-    padding-right: 8px;
+/* ========== STORE GRID ========== */
+.store-grid-section {
+    max-width: 1100px;
+    margin: 0 auto 50px;
+    padding: 0 20px;
 }
 
-.store-list::-webkit-scrollbar {
-    width: 6px;
+.store-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
 }
 
-.store-list::-webkit-scrollbar-thumb {
-    background-color: #ddd;
-    border-radius: 4px;
+.store-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    border: 2px solid transparent;
+    transition: all 0.25s;
+    cursor: pointer;
 }
 
-.store-item {
-    border: 1px solid #f0f0f0;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 12px;
+[data-theme="dark"] .store-card {
+    background: #1e1e23;
+}
+
+.store-card:hover,
+.store-card.active {
+    border-color: #667eea;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.12);
+}
+
+.store-card-image {
     position: relative;
-    transition: all 0.2s;
+    height: 160px;
+    overflow: hidden;
 }
 
-.store-item:hover {
-    border-color: #36D1DC;
-    background-color: #fafdff;
+.store-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
 }
 
-.store-icon {
+.store-card:hover .store-card-image img {
+    transform: scale(1.05);
+}
+
+.flagship-badge {
     position: absolute;
-    top: 16px;
-    right: 16px;
-    color: #0072FF;
-    opacity: 0.1;
+    top: 12px;
+    left: 12px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 6px;
+    text-transform: uppercase;
 }
 
-.store-info h3 {
-    font-size: 16px;
+.status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 11px;
     font-weight: 600;
-    margin-bottom: 8px;
-    color: #333;
+    padding: 5px 10px;
+    border-radius: 6px;
 }
 
-.store-detail {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    color: #666;
+.status-badge.open {
+    background: rgba(34, 197, 94, 0.9);
+    color: white;
+}
+
+.status-badge.closed {
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+}
+
+.store-card-content {
+    padding: 20px;
+}
+
+.store-card-content h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e293b;
     margin-bottom: 6px;
 }
 
-.open-status {
-    color: #28a745;
-    font-weight: 500;
+[data-theme="dark"] .store-card-content h3 {
+    color: #f1f5f9;
 }
 
-.distance-badge {
-    display: inline-block;
-    background-color: #db4444;
-    color: white;
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 12px;
-    margin-top: 8px;
+.store-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 12px;
 }
 
-.btn-direction {
-    margin-top: 12px;
-    width: 100%;
-    padding: 8px;
-    background: white;
-    border: 1px solid #0072FF;
-    color: #0072FF;
-    border-radius: 8px;
+.store-rating span {
     font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
+    font-weight: 600;
+    color: #1e293b;
 }
 
-.btn-direction:hover {
-    background: #0072FF;
-    color: white;
+[data-theme="dark"] .store-rating span {
+    color: #f1f5f9;
 }
 
-/* Map area */
-.locator-map {
+.review-count {
+    color: #94a3b8 !important;
+    font-weight: 400 !important;
+}
+
+.store-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.meta-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.meta-item svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #667eea;
+}
+
+.store-card-actions {
+    display: flex;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid #f1f5f9;
+}
+
+[data-theme="dark"] .store-card-actions {
+    border-top-color: rgba(255, 255, 255, 0.05);
+}
+
+.btn-directions {
     flex: 1;
-    background: #e9ecef;
-    border-radius: 16px;
-    overflow: hidden;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.map-placeholder {
-    text-align: center;
-    color: #adb5bd;
-}
-
-.map-placeholder p {
-    font-size: 18px;
+    gap: 6px;
+    padding: 10px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
     font-weight: 600;
-    margin-top: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
 }
 
+.btn-directions:hover {
+    background: #5a6fd6;
+}
+
+.btn-call {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: #f1f5f9;
+    color: #667eea;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+[data-theme="dark"] .btn-call {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.btn-call:hover {
+    background: #667eea;
+    color: white;
+}
+
+/* ========== MAP ========== */
+.store-map-section {
+    max-width: 1100px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+}
+
+.store-map-section h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+[data-theme="dark"] .store-map-section h2 {
+    color: #f1f5f9;
+}
+
+.map-container {
+    height: 350px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
-    .locator-container {
+    .store-hero-content h1 {
+        font-size: 28px;
+    }
+
+    .store-search-container {
         flex-direction: column;
-        height: auto;
     }
 
-    .locator-sidebar {
+    .locate-btn {
         width: 100%;
-        height: 500px;
+        justify-content: center;
     }
 
-    .locator-map {
-        height: 300px;
-        display: none;
-        /* Hide map on mobile for simplicity or show as block */
+    .store-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .map-container {
+        height: 250px;
     }
 }

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, ShoppingCart, Star, ChevronLeft, ChevronRight, Search } from 'lucide-react';
+import { Heart, ShoppingCart, Star, ChevronLeft, ChevronRight, Search, SlidersHorizontal, X } from 'lucide-react';
 import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
 import ProductCard from '../components/ProductCard';
 import ProductSkeleton from '../components/ProductSkeleton';
+import PublicFooter from '../components/PublicFooter';
 import { products } from '../data/products';
 import './Catalog.css';
 
@@ -17,6 +18,7 @@ const Catalog = () => {
     const query = searchParams.get('q') || '';
     const [loading, setLoading] = useState(false);
     const [sortBy, setSortBy] = useState('default');
+    const [showFilters, setShowFilters] = useState(false);
     const [filters, setFilters] = useState({
         category: 'All',
         maxPrice: 30000000,
@@ -50,9 +52,16 @@ const Catalog = () => {
             return 0; // default
         });
 
+    // Count active filters
+    const activeFilterCount = [
+        filters.category !== 'All',
+        filters.maxPrice < 30000000,
+        filters.minRating > 0
+    ].filter(Boolean).length;
+
 
     return (
-        <div className="catalog-page-figma">
+        <div className="catalog-page-premium">
             {/* Hero Banner */}
             <div className="catalog-hero">
                 <div className="hero-content">
@@ -94,20 +103,28 @@ const Catalog = () => {
                 </nav>
 
                 <div className="catalog-main-layout">
-                    {/* Sidebar Filters */}
-                    <aside className="catalog-sidebar">
+                    {/* Filter Overlay */}
+                    {showFilters && <div className="filter-overlay" onClick={() => setShowFilters(false)}></div>}
+
+                    {/* Sidebar Filters - Collapsible */}
+                    <aside className={`catalog-sidebar ${showFilters ? 'active' : ''}`}>
                         <div className="sidebar-header">
                             <h3>Bộ lọc</h3>
-                            <button
-                                className="clear-all-btn"
-                                onClick={() => {
-                                    setFilters({ category: 'All', maxPrice: 30000000, minRating: 0 });
-                                    setSortBy('default');
-                                    showToast('Đã đặt lại bộ lọc', 'info');
-                                }}
-                            >
-                                Xóa tất cả
-                            </button>
+                            <div className="sidebar-actions">
+                                <button
+                                    className="clear-all-btn"
+                                    onClick={() => {
+                                        setFilters({ category: 'All', maxPrice: 30000000, minRating: 0 });
+                                        setSortBy('default');
+                                        showToast('Đã đặt lại bộ lọc', 'info');
+                                    }}
+                                >
+                                    Xóa tất cả
+                                </button>
+                                <button className="close-filter-btn" onClick={() => setShowFilters(false)}>
+                                    <X size={20} />
+                                </button>
+                            </div>
                         </div>
 
                         <div className="filter-group">
@@ -172,12 +189,26 @@ const Catalog = () => {
                                 ))}
                             </div>
                         </div>
+
+                        <button className="apply-filter-btn" onClick={() => setShowFilters(false)}>
+                            Áp dụng bộ lọc
+                        </button>
                     </aside>
 
                     <div className="catalog-content">
                         {/* Sorting Header */}
                         <div className="catalog-controls">
-                            <span className="results-count">Hiển thị {processedProducts.length} sản phẩm</span>
+                            <div className="controls-left">
+                                <button
+                                    className={`filter-toggle-btn ${activeFilterCount > 0 ? 'has-filters' : ''}`}
+                                    onClick={() => setShowFilters(true)}
+                                >
+                                    <SlidersHorizontal size={18} />
+                                    <span>Bộ lọc</span>
+                                    {activeFilterCount > 0 && <span className="filter-count">{activeFilterCount}</span>}
+                                </button>
+                                <span className="results-count">Hiển thị <strong>{processedProducts.length}</strong> sản phẩm</span>
+                            </div>
                             <div className="sort-box">
                                 <span>Sắp xếp:</span>
                                 <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>

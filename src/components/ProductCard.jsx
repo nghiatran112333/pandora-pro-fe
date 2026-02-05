@@ -1,8 +1,8 @@
-import React from 'react';
 import { Heart, ShoppingCart, Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
+
 
 const ProductCard = ({ product }) => {
     const navigate = useNavigate();
@@ -15,9 +15,12 @@ const ProductCard = ({ product }) => {
         showToast(`Đã thêm ${product.name} vào giỏ hàng!`, 'success');
     };
 
+
+
     return (
         <div className="product-card-figma" onClick={() => navigate('/product-detail')}>
             <div className="p-img-box-figma">
+
                 <button className="heart-btn" aria-label="Add to Wishlist">
                     <Heart size={18} />
                 </button>
@@ -28,7 +31,7 @@ const ProductCard = ({ product }) => {
                 >
                     <ShoppingCart size={18} />
                 </button>
-                <img src={product.img} alt={product.name} loading="lazy" />
+                <img src={product.image} alt={product.name} loading="lazy" />
             </div>
             <div className="p-info-figma">
                 <h3>{product.name}</h3>
