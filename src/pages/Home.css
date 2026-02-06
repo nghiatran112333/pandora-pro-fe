@@ -385,7 +385,8 @@
 /* ... existing styles ... */
 
 .view-all-btn {
-    background-color: #db4444;
+    background-color: var(--primary-blue);
+    /* Theme Blue */
     color: white;
     border: none;
     padding: 10px 24px;
@@ -396,21 +397,15 @@
     transition: all 0.2s;
 }
 
-/* ... existing styles ... */
-
-.product-card-figma {
-    background: var(--card-bg);
-    border-radius: 20px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.2s;
-    border: 1px solid var(--border-color);
+.view-all-btn:hover {
+    background-color: var(--primary-hover);
 }
 
 /* ... existing styles ... */
 
 .view-all-products-btn {
-    background-color: #db4444;
+    background-color: var(--primary-blue);
+    /* Theme Blue */
     color: white;
     border: none;
     padding: 14px 48px;
@@ -419,17 +414,19 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s;
-    box-shadow: 0 4px 15px rgba(219, 68, 68, 0.3);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    /* Blue shadow */
 }
 
 /* ... existing styles ... */
 
 .flash-sales-section {
-    background: linear-gradient(180deg, #e8f4fc 0%, #d4ecfb 100%);
+    background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
+    /* Lighter Blue */
     border-radius: 24px;
     padding: 30px;
     margin-bottom: 60px;
-    border: 1px solid #e1f1fc;
+    border: 1px solid #bae6fd;
 }
 
 .hero-content {

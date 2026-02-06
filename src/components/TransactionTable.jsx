@@ -18,7 +18,6 @@ const TransactionTable = () => {
                         <th>Tên</th>
                         <th>Ngày</th>
                         <th>Số tiền</th>
-                        <th>Trạng thái</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,11 +26,6 @@ const TransactionTable = () => {
                             <td>{t.name}</td>
                             <td>{t.date}</td>
                             <td>{t.amount}</td>
-                            <td>
-                                <span className={`status-badge ${t.status.toLowerCase()}`}>
-                                    {t.status}
-                                </span>
-                            </td>
                         </tr>
                     ))}
                 </tbody>

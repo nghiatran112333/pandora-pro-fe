@@ -1,140 +1,221 @@
-import React, { useState, useEffect } from 'react';
-import StatCard from '../components/StatCard';
-import TransactionTable from '../components/TransactionTable';
-import BestSellers from '../components/BestSellers';
-import DashboardSkeleton from '../components/DashboardSkeleton';
-import { DollarSign, ShoppingCart, Eye, Users, TrendingUp, ArrowUpRight } from 'lucide-react';
-import {
-    AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-    BarChart, Bar, Cell, Legend
-} from 'recharts';
+import React, { useMemo } from 'react';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
+import { DollarSign, ShoppingBag, Users, TrendingUp, Package, ArrowUpRight, ArrowDownRight, Clock } from 'lucide-react';
 import './Dashboard.css';
+import { products } from '../data/products';
+
+// Mock Stats that can't be derived purely from product list yet
+// In a real app, these would come from an Orders API
+const recentOrders = [
+    { id: '#ORD-7752', user: 'Hoàng Nam', product: 'iPhone 15 Pro Max', amount: '34.990.000đ', status: 'completed' },
+    { id: '#ORD-7753', user: 'Minh Thư', product: 'MacBook Air M2', amount: '27.500.000đ', status: 'processing' },
+    { id: '#ORD-7754', user: 'Văn Toàn', product: 'AirPods Pro 2', amount: '5.990.000đ', status: 'pending' },
+    { id: '#ORD-7755', user: 'Thanh Hằng', product: 'iPad Air 5', amount: '14.500.000đ', status: 'completed' },
+];
 
 const Dashboard = () => {
-    const [loading, setLoading] = useState(true);
+    // 1. Calculate Real Stats from the Products Data
+    const stats = useMemo(() => {
+        const totalProducts = products.length;
+        const totalStock = products.reduce((acc, p) => acc + parseInt(p.stock || 0), 0);
+        // Assume "low stock" is less than 20 units
+        const lowStock = products.filter(p => parseInt(p.stock) < 20).length;
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setLoading(false);
-        }, 1500);
-        return () => clearTimeout(timer);
+        // Mocking Total Revenue since we don't have a real Transaction History
+        const totalRevenue = "2.845.000.000đ";
+
+        return { totalProducts, totalStock, lowStock, totalRevenue };
     }, []);
+
+    // 2. Prepare Data for Charts
+    // Revenue Chart Data (Mocked Time Series)
     const revenueData = [
-        { name: 'Jan', revenue: 4000, orders: 240 },
-        { name: 'Feb', revenue: 3000, orders: 198 },
-        { name: 'Mar', revenue: 5000, orders: 300 },
-        { name: 'Apr', revenue: 4780, orders: 280 },
-        { name: 'May', revenue: 5890, orders: 390 },
-        { name: 'Jun', revenue: 6390, orders: 420 },
-        { name: 'Jul', revenue: 7490, orders: 500 },
+        { name: 'T2', value: 4000 },
+        { name: 'T3', value: 3000 },
+        { name: 'T4', value: 2000 },
+        { name: 'T5', value: 2780 },
+        { name: 'T6', value: 1890 },
+        { name: 'T7', value: 2390 },
+        { name: 'CN', value: 3490 },
     ];
 
-    const categoryData = [
-        { name: 'Iphone', value: 45, color: '#3b82f6' },
-        { name: 'Laptop', value: 30, color: '#10b981' },
-        { name: 'Headphones', value: 15, color: '#f59e0b' },
-        { name: 'Others', value: 10, color: '#8b5cf6' },
-    ];
+    // Category Distribution (Real Calculation)
+    const categoryData = useMemo(() => {
+        const catMap = {};
+        products.forEach(p => {
+            // Standardize keys if needed, e.g. uppercase
+            const key = p.category || 'Khác';
+            catMap[key] = (catMap[key] || 0) + 1;
+        });
+        return Object.keys(catMap).map((key) => ({
+            name: key,
+            value: catMap[key]
+        }));
+    }, []);
 
-    const stats = [
-        { title: 'Tổng DT', value: '$10.54M', percentage: '22.45%', isIncrease: true, icon: DollarSign, color: '#3b82f6' },
-        { title: 'Đơn hàng', value: '1,056', percentage: '15.34%', isIncrease: true, icon: ShoppingCart, color: '#8b5cf6' },
-        { title: 'Người dùng mới', value: '1.650', percentage: '11.45%', isIncrease: true, icon: Users, color: '#10b981' },
-        { title: 'Tỷ lệ chuyển đổi', value: '3.42%', percentage: '5.24%', isIncrease: true, icon: TrendingUp, color: '#f59e0b' },
-    ];
-
-    if (loading) return <DashboardSkeleton />;
+    const COLORS = ['#3B82F6', '#8B5CF6', '#10B981', '#F59E0B', '#EF4444', '#EC4899'];
 
     return (
         <div className="dashboard-container">
-            <div className="dashboard-header-simple">
+            <header className="dashboard-header-simple">
                 <div>
-                    <h1>Chào buổi sáng, Admin!</h1>
-                    <p>Đây là những gì đang diễn ra với cửa hàng của bạn hôm nay.</p>
+                    <h1>Tổng quan</h1>
+                    <p>Chào mừng trở lại, Admin! Dưới đây là tình hình kinh doanh hôm nay.</p>
                 </div>
                 <button className="export-btn">
-                    Tải báo cáo <ArrowUpRight size={16} />
+                    <TrendingUp size={16} /> Xuất báo cáo
                 </button>
-            </div>
+            </header>
 
+            {/* Top Stats Grid */}
             <div className="stats-grid">
-                {stats.map((stat, index) => (
-                    <StatCard key={index} {...stat} />
-                ))}
+                <div className="stat-card blue">
+                    <div className="stat-icon"><DollarSign size={24} /></div>
+                    <div className="stat-info">
+                        <h3>Doanh thu</h3>
+                        <p className="stat-value">{stats.totalRevenue}</p>
+                        <span className="stat-change positive"><ArrowUpRight size={14} /> +12.5%</span>
+                    </div>
+                </div>
+                <div className="stat-card purple">
+                    <div className="stat-icon"><ShoppingBag size={24} /></div>
+                    <div className="stat-info">
+                        <h3>Đơn hàng</h3>
+                        <p className="stat-value">1,482</p>
+                        <span className="stat-change positive"><ArrowUpRight size={14} /> +8.2%</span>
+                    </div>
+                </div>
+                <div className="stat-card green">
+                    <div className="stat-icon"><Package size={24} /></div>
+                    <div className="stat-info">
+                        <h3>Sản phẩm</h3>
+                        <p className="stat-value">{stats.totalProducts}</p>
+                        <span className="stat-change positive"><ArrowUpRight size={14} /> Kho: {stats.totalStock}</span>
+                    </div>
+                </div>
+                <div className="stat-card orange">
+                    <div className="stat-icon"><Clock size={24} /></div>
+                    <div className="stat-info">
+                        <h3>Cần nhập thêm</h3>
+                        <p className="stat-value">{stats.lowStock}</p>
+                        <span className="stat-change negative"><ArrowDownRight size={14} /> Sắp hết hàng</span>
+                    </div>
+                </div>
             </div>
 
+            {/* Charts Section */}
             <div className="charts-main-grid">
-                <div className="chart-card card revenue-chart">
+                {/* Area Chart: Revenue */}
+                <div className="chart-card">
                     <div className="card-header">
-                        <h2>Doanh thu & Đơn hàng</h2>
+                        <h2>Doanh thu 7 ngày qua</h2>
                         <select className="chart-select">
-                            <option>7 ngày qua</option>
-                            <option>30 ngày qua</option>
+                            <option>Tuần này</option>
+                            <option>Tháng này</option>
                         </select>
                     </div>
-                    <div className="chart-container-inner">
-                        <ResponsiveContainer width="100%" height={300}>
+                    <div style={{ width: '100%', height: 300 }}>
+                        <ResponsiveContainer>
                             <AreaChart data={revenueData}>
                                 <defs>
-                                    <linearGradient id="colorRev" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.2} />
-                                        <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                                    <linearGradient id="colorVal" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.8} />
+                                        <stop offset="95%" stopColor="#3B82F6" stopOpacity={0} />
                                     </linearGradient>
                                 </defs>
-                                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border-color)" opacity={0.5} />
-                                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 12, fontWeight: 500 }} dy={10} />
-                                <YAxis axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 12, fontWeight: 500 }} />
+                                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
+                                <XAxis dataKey="name" axisLine={false} tickLine={false} tickMargin={10} style={{ fontSize: '12px', fill: '#64748B' }} />
+                                <YAxis axisLine={false} tickLine={false} tickMargin={10} style={{ fontSize: '12px', fill: '#64748B' }} />
                                 <Tooltip
-                                    contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)', backgroundColor: 'var(--card-bg)', color: 'var(--text-main)' }}
-                                    itemStyle={{ color: 'var(--text-main)' }}
-                                    cursor={{ stroke: '#3b82f6', strokeWidth: 1, strokeDasharray: '5 5' }}
+                                    contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
                                 />
-                                <Area type="monotone" dataKey="revenue" stroke="#3b82f6" strokeWidth={3} fillOpacity={1} fill="url(#colorRev)" />
+                                <Area type="monotone" dataKey="value" stroke="#3B82F6" strokeWidth={2} fillOpacity={1} fill="url(#colorVal)" />
                             </AreaChart>
                         </ResponsiveContainer>
                     </div>
                 </div>
 
-                <div className="chart-card card category-chart">
+                {/* Pie Chart: Categories */}
+                <div className="chart-card">
                     <div className="card-header">
-                        <h2>Tỷ trọng danh mục</h2>
+                        <h2>Phân bổ danh mục</h2>
                     </div>
-                    <div className="chart-container-inner">
-                        <ResponsiveContainer width="100%" height={300}>
-                            <BarChart data={categoryData} layout="vertical" barGap={20}>
-                                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="var(--border-color)" opacity={0.5} />
-                                <XAxis type="number" hide />
-                                <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 12, fontWeight: 500 }} width={80} />
-                                <Tooltip
-                                    cursor={{ fill: 'rgba(0,0,0,0.02)' }}
-                                    contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)', backgroundColor: 'var(--card-bg)' }}
-                                />
-                                <Bar dataKey="value" radius={[0, 6, 6, 0]} barSize={24}>
+                    <div style={{ width: '100%', height: 300 }}>
+                        <ResponsiveContainer>
+                            <PieChart>
+                                <Pie
+                                    data={categoryData}
+                                    cx="50%"
+                                    cy="50%"
+                                    innerRadius={60}
+                                    outerRadius={80}
+                                    paddingAngle={5}
+                                    dataKey="value"
+                                >
                                     {categoryData.map((entry, index) => (
-                                        <Cell key={`cell-${index}`} fill={entry.color} />
+                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                     ))}
-                                </Bar>
-                            </BarChart>
+                                </Pie>
+                                <Tooltip />
+                                <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
+                            </PieChart>
                         </ResponsiveContainer>
                     </div>
                 </div>
             </div>
 
-            <div className="content-grid middle-grid">
-                <section className="recent-transactions card">
+            {/* Bottom Grid: Transactions & Best Sellers */}
+            <div className="middle-grid">
+                {/* Recent Orders */}
+                <div className="card">
                     <div className="card-header">
                         <h2>Giao dịch gần đây</h2>
                         <button className="view-all-link">Xem tất cả</button>
                     </div>
-                    <TransactionTable />
-                </section>
-
-                <section className="best-sellers card">
-                    <div className="card-header">
-                        <h2>Sản phẩm bán chạy</h2>
+                    <div className="table-responsive">
+                        <table className="simple-table">
+                            <thead>
+                                <tr>
+                                    <th>Đơn hàng</th>
+                                    <th>Khách hàng</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {recentOrders.map(order => (
+                                    <tr key={order.id}>
+                                        <td style={{ fontWeight: 600 }}>{order.id}</td>
+                                        <td>{order.user}</td>
+                                        <td>{order.product}</td>
+                                        <td style={{ fontWeight: 600, color: '#0F172A' }}>{order.amount}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
-                    <BestSellers />
-                </section>
+                </div>
+
+                {/* Best Sellers (Preview from Product List) */}
+                <div className="card">
+                    <div className="card-header">
+                        <h2>Sản phẩm nổi bật</h2>
+                    </div>
+                    <div className="best-sellers-list">
+                        {products.slice(0, 4).map((p, i) => (
+                            <div className="best-seller-item" key={i}>
+                                <div className="bs-img-wrapper">
+                                    <img src={p.image || 'https://placehold.co/100'} alt={p.name} />
+                                </div>
+                                <div className="bs-info">
+                                    <h4>{p.name}</h4>
+                                    <span className="bs-price">{p.price.toLocaleString()}đ</span>
+                                </div>
+                                <div className="bs-rank">#{i + 1}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
     );

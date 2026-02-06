@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard';
 import Orders from './pages/Orders';
 import Products from './pages/Products';
 import AddProduct from './pages/AddProduct';
+import EditProduct from './pages/EditProduct';
 import Categories from './pages/Categories';
 import CategoryDetail from './pages/CategoryDetail';
 import Login from './pages/Login';
@@ -35,6 +36,7 @@ import ResetPassword from './pages/ResetPassword';
 import SearchResults from './pages/SearchResults';
 
 import Policies from './pages/Policies';
+import AdminPlaceholder from './components/AdminPlaceholder';
 
 
 
@@ -90,10 +92,15 @@ function App() {
             <Route path="orders" element={<Orders />} />
             <Route path="products" element={<Products />} />
             <Route path="products/add" element={<AddProduct />} />
+            <Route path="products/edit/:id" element={<EditProduct />} />
             <Route path="categories" element={<Categories />} />
             <Route path="categories/:id" element={<CategoryDetail />} />
             <Route path="customers" element={<Customers />} />
             <Route path="reports" element={<Reports />} />
+            <Route path="promos" element={<AdminPlaceholder title="Quản lý Khuyến mãi" />} />
+            <Route path="inbox" element={<AdminPlaceholder title="Hộp thư đến" />} />
+            <Route path="support" element={<AdminPlaceholder title="Hỗ trợ & Trợ giúp" />} />
+            <Route path="settings" element={<AdminPlaceholder title="Cài đặt hệ thống" />} />
           </Route>
 
           {/* 404 Not Found */}

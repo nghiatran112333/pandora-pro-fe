@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Search, Heart, ShoppingCart, User, ChevronDown, ChevronRight, LogOut, Package, Star, UserCircle, Menu, X, LogIn } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search, Heart, ShoppingCart, User, ChevronDown, ChevronRight, LogOut, Package, Star, UserCircle, Menu, X, LogIn, LayoutDashboard } from 'lucide-react';
 import { useNavigate, Link, NavLink } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
@@ -96,16 +97,21 @@ const Navbar = () => {
     ];
 
     const userMenuItems = [
+        ...(user?.role === 'admin' ? [{
+            icon: LayoutDashboard,
+            label: 'Quản trị hệ thống',
+            path: '/admin',
+            className: 'admin-link-highlight'
+        }] : []),
         { icon: UserCircle, label: 'Thông tin tài khoản', path: '/profile' },
         { icon: Package, label: 'Đơn hàng của tôi', path: '/user-orders' },
-        { icon: Star, label: 'Đánh giá', path: '/profile' },
     ];
 
     return (
         <>
             {/* Blue Banner */}
             <div className="top-banner-bar">
-                ✨ Pandora Pro - Nơi công nghệ đỉnh cao hội tụ, kiến tạo phong cách sống thời thượng
+                Pandora Pro - Nơi công nghệ đỉnh cao hội tụ, kiến tạo phong cách sống thời thượng
             </div>
 
             <header className="public-header">
@@ -116,7 +122,41 @@ const Navbar = () => {
                     </button>
 
                     <Link to="/" className="logo">
-                        <span className="logo-icon">🛒</span> PandoraPro
+                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="logo-icon-svg">
+                            <defs>
+                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stopColor="#3b82f6" />
+                                    <stop offset="100%" stopColor="#8b5cf6" />
+                                </linearGradient>
+                            </defs>
+                            {/* Fluid Organic Network - continuous curve */}
+                            <path d="M18 4C14 4 11 7 11 11C11 13.5 12.5 15.5 14.5 16.5C12.5 17.5 11 19.5 11 22C11 26 14 29 18 29C22 29 25 26 25 22C25 19.5 23.5 17.5 21.5 16.5C23.5 15.5 25 13.5 25 11C25 7 22 4 18 4Z"
+                                stroke="url(#logoGradient)"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                opacity="0.1"
+                            />
+
+                            {/* Orbital Paths - Soft Curves */}
+                            <path d="M18 2V6M18 30V34M2 18H6M30 18H34" stroke="none" />
+
+                            {/* Main Fluid Loop - Infinity style */}
+                            <path d="M18 8C15 8 13 10 13 12.5C13 16 18 15 18 18.5C18 22 13 21 13 24.5C13 27 15 29 18 29C21 29 23 27 23 24.5C23 21 18 22 18 18.5C18 15 23 16 23 12.5C23 10 21 8 18 8Z"
+                                stroke="url(#logoGradient)"
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                            />
+
+                            {/* Floating Nodes */}
+                            <circle cx="18" cy="8" r="2.5" fill="white" stroke="#3b82f6" strokeWidth="1.5" />
+                            <circle cx="13" cy="12.5" r="2" fill="white" stroke="#3b82f6" strokeWidth="1.5" />
+                            <circle cx="23" cy="12.5" r="2" fill="white" stroke="#3b82f6" strokeWidth="1.5" />
+                            <circle cx="13" cy="24.5" r="2" fill="white" stroke="#8b5cf6" strokeWidth="1.5" />
+                            <circle cx="23" cy="24.5" r="2" fill="white" stroke="#8b5cf6" strokeWidth="1.5" />
+                            <circle cx="18" cy="29" r="2.5" fill="white" stroke="#8b5cf6" strokeWidth="1.5" />
+                        </svg>
+                        <span className="logo-text">Pandora<span className="logo-accent">Pro</span></span>
                     </Link>
 
                     {/* Desktop Nav */}
@@ -254,31 +294,42 @@ const Navbar = () => {
                                 <div className="user-icon-circle">
                                     <User size={18} />
                                 </div>
-                                {showUserDropdown && (
-                                    <div className="dropdown-menu user-dropdown">
-                                        <div className="user-dropdown-header">
-                                            <span className="user-name-display">{user.name}</span>
-                                            <span className="user-role-display">{user.role === 'admin' ? 'Quản trị viên' : 'Thành viên'}</span>
-                                        </div>
-                                        {userMenuItems.map((item, idx) => (
-                                            <div
-                                                key={idx}
-                                                className="dropdown-item"
-                                                onClick={() => { navigate(item.path); setShowUserDropdown(false); }}
-                                            >
-                                                <item.icon size={16} />
-                                                <span>{item.label}</span>
-                                            </div>
-                                        ))}
-                                        <div
-                                            className="dropdown-item logout"
-                                            onClick={handleLogout}
+                                <AnimatePresence>
+                                    {showUserDropdown && (
+                                        <motion.div
+                                            className="dropdown-menu user-dropdown"
+                                            initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                            transition={{ duration: 0.2, ease: "easeOut" }}
                                         >
-                                            <LogOut size={16} />
-                                            <span>Đăng xuất</span>
-                                        </div>
-                                    </div>
-                                )}
+                                            <div className="user-dropdown-header">
+                                                <span className="user-name-display">{user.name}</span>
+                                                <span className="user-role-display">{user.role === 'admin' ? 'Quản trị hệ thống' : 'Thành viên'}</span>
+                                            </div>
+                                            <div className="user-dropdown-items-container">
+                                                {userMenuItems.map((item, idx) => (
+                                                    <div
+                                                        key={idx}
+                                                        className={`dropdown-item ${item.className || ''}`}
+                                                        onClick={() => { navigate(item.path); setShowUserDropdown(false); }}
+                                                    >
+                                                        <item.icon size={16} />
+                                                        <span>{item.label}</span>
+                                                    </div>
+                                                ))}
+                                                <div className="dropdown-divider-navbar"></div>
+                                                <div
+                                                    className="dropdown-item logout"
+                                                    onClick={handleLogout}
+                                                >
+                                                    <LogOut size={16} />
+                                                    <span>Đăng xuất</span>
+                                                </div>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
                         ) : (
                             <Link to="/login" className="login-btn-header">

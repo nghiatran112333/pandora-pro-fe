@@ -340,6 +340,15 @@
     color: #f5f5f7;
 }
 
+/* ========== MAIN WRAPPER ========== */
+.pd-main-wrapper {
+    max-width: 1600px;
+    /* Wider for Fullscreen feel */
+    width: 95%;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
 .pd-quantity span {
     width: 24px;
     text-align: center;
@@ -348,7 +357,8 @@
 
 .btn-add-cart-premium {
     flex: 1;
-    background: #0071e3;
+    background: var(--primary-blue);
+    /* Theme Variable */
     color: white;
     border: none;
     height: 50px;
@@ -364,7 +374,7 @@
 }
 
 .btn-add-cart-premium:hover {
-    background: #0077ed;
+    background: var(--primary-hover);
 }
 
 .btn-wishlist {

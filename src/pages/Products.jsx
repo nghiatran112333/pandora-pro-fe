@@ -3,6 +3,7 @@ import { Search, Download, Plus, Filter, Edit, Trash2, Star } from 'lucide-react
 import { useNavigate } from 'react-router-dom';
 import Modal from '../components/Modal';
 import { products } from '../data/products';
+import './Dashboard.css'; // Use shared dashboard styles
 import './Products.css';
 
 const Products = () => {
@@ -10,12 +11,15 @@ const Products = () => {
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
     return (
-        <div className="products-page">
-            <div className="page-header">
-                <h1>Sản phẩm</h1>
-                <div className="header-btns">
-                    <button className="btn-secondary"><Download size={18} /> Xuất DL</button>
-                    <button className="btn-primary" onClick={() => navigate('/products/add')}><Plus size={18} /> Thêm</button>
+        <div className="dashboard-container">
+            <div className="dashboard-header-simple">
+                <div>
+                    <h1>Sản phẩm</h1>
+                    <p>Quản lý danh sách sản phẩm của cửa hàng</p>
+                </div>
+                <div className="header-btns" style={{ display: 'flex', gap: '12px' }}>
+                    <button className="export-btn"><Download size={16} /> Xuất DL</button>
+                    <button className="btn-primary" onClick={() => navigate('/admin/products/add')}><Plus size={16} /> Thêm mới</button>
                 </div>
             </div>
 
@@ -72,7 +76,7 @@ const Products = () => {
                                     </td>
                                     <td data-label="Hành động">
                                         <div className="action-menu">
-                                            <button className="icon-btn" title="Edit"><Edit size={16} /></button>
+                                            <button className="icon-btn" title="Edit" onClick={() => navigate(`/admin/products/edit/${p.id}`)}><Edit size={16} /></button>
                                             <button className="icon-btn delete" onClick={() => setIsDeleteOpen(true)} title="Delete"><Trash2 size={16} /></button>
                                         </div>
                                     </td>

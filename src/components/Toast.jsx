@@ -7,7 +7,7 @@ const Toast = ({ message, type = 'success', onClose }) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             onClose();
-        }, 4000);
+        }, 2500);
         return () => clearTimeout(timer);
     }, [onClose]);
 
@@ -21,9 +21,10 @@ const Toast = ({ message, type = 'success', onClose }) => {
     return (
         <motion.div
             layout
-            initial={{ opacity: 0, x: 50, scale: 0.9 }}
+            initial={{ opacity: 0, x: 50, scale: 0.85 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: 20, scale: 0.95, transition: { duration: 0.2 } }}
+            exit={{ opacity: 0, x: 30, scale: 0.9, transition: { duration: 0.15 } }}
+            transition={{ type: "spring", stiffness: 400, damping: 30 }}
             className={`toast-item ${type}`}
         >
             <div className="toast-icon">
@@ -37,7 +38,7 @@ const Toast = ({ message, type = 'success', onClose }) => {
                 className="toast-progress"
                 initial={{ width: "100%" }}
                 animate={{ width: "0%" }}
-                transition={{ duration: 4, ease: "linear" }}
+                transition={{ duration: 2.5, ease: "linear" }}
             />
         </motion.div>
     );

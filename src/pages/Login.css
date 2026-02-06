@@ -1,4 +1,4 @@
-/* ========== PREMIUM AUTH PAGE STYLES ========== */
+/* ========== PREMIUM AUTH PAGE STYLES - Light Blue Glassmorphism (Centered) ========== */
 
 /* Base Page */
 .auth-page-premium {
@@ -6,11 +6,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%);
+    /* Light Blue Gradient */
     padding: 20px;
     position: relative;
     overflow: hidden;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Outfit', sans-serif;
 }
 
 /* Animated Background Shapes */
@@ -19,36 +20,43 @@
     inset: 0;
     overflow: hidden;
     pointer-events: none;
+    z-index: 0;
 }
 
 .floating-shape {
     position: absolute;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-/* Glass Container */
+/* Glass Container - CENTERED FLOATING CARD */
 .auth-glass-container {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
     max-width: 1100px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.85);
+    /* Lighter Glass */
     backdrop-filter: blur(20px);
     border-radius: 24px;
+    /* Restored Corner Radius */
     box-shadow:
-        0 25px 50px -12px rgba(0, 0, 0, 0.25),
-        0 0 0 1px rgba(255, 255, 255, 0.2);
+        0 25px 50px -12px rgba(59, 130, 246, 0.15),
+        /* Blue shadow */
+        0 0 0 1px rgba(255, 255, 255, 0.5);
     overflow: hidden;
     position: relative;
     z-index: 1;
+    min-height: 600px;
+    /* Specific height for card */
 }
 
 /* Brand Side */
 .auth-brand-side {
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #2563EB 100%);
+    /* Blue Gradient */
     padding: 48px;
     display: flex;
     flex-direction: column;
@@ -106,6 +114,7 @@
     color: white;
     margin-bottom: 16px;
     line-height: 1.2;
+    font-weight: 700;
 }
 
 .brand-light {
@@ -118,7 +127,7 @@
 }
 
 .brand-tagline {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.9);
     font-size: 15px;
     line-height: 1.6;
     margin-bottom: 32px;
@@ -157,17 +166,23 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
     font-size: 14px;
     font-weight: 500;
+    transition: transform 0.2s;
+}
+
+.feature-item:hover {
+    transform: translateX(5px);
 }
 
 .feature-dot {
     width: 8px;
     height: 8px;
-    background: #22d3ee;
+    background: #bae6fd;
+    /* Light blue dot */
     border-radius: 50%;
-    box-shadow: 0 0 10px #22d3ee;
+    box-shadow: 0 0 10px #bae6fd;
 }
 
 /* Form Side */
@@ -175,6 +190,10 @@
     padding: 48px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    /* Removed align-items: center; */
+    background: white;
+    /* Clean white background for form area */
 }
 
 /* Tab Switcher */
@@ -185,6 +204,9 @@
     padding: 4px;
     position: relative;
     margin-bottom: 32px;
+    width: 100%;
+    max-width: 400px;
+    border: none;
 }
 
 .tab-btn {
@@ -202,7 +224,7 @@
 }
 
 .tab-btn.active {
-    color: #6366f1;
+    color: var(--primary-blue);
 }
 
 .tab-indicator {
@@ -221,6 +243,9 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: none;
+    /* Reset max-width from fullscreen */
 }
 
 .form-title {
@@ -228,12 +253,16 @@
     font-weight: 700;
     color: #1e293b;
     margin-bottom: 8px;
+    text-align: left;
+    /* Alignment reset */
 }
 
 .form-subtitle {
     font-size: 14px;
     color: #64748b;
     margin-bottom: 32px;
+    text-align: left;
+    /* Alignment reset */
 }
 
 /* Input Groups */
@@ -255,9 +284,9 @@
 }
 
 .input-group.focused {
-    border-color: #6366f1;
+    border-color: var(--primary-blue);
     background: white;
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
 }
 
 .input-icon {
@@ -269,7 +298,7 @@
 }
 
 .input-group.focused .input-icon {
-    color: #6366f1;
+    color: var(--primary-blue);
 }
 
 .input-group input {
@@ -280,6 +309,7 @@
     font-size: 15px;
     color: #1e293b;
     outline: none;
+    font-weight: 400;
 }
 
 .input-group input::placeholder {
@@ -301,7 +331,7 @@
 }
 
 .toggle-password:hover {
-    color: #6366f1;
+    color: var(--primary-blue);
 }
 
 .input-focus-line {
@@ -310,8 +340,10 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, #6366f1, #a855f7);
+    background: linear-gradient(90deg, var(--primary-blue), #60a5fa);
     transform-origin: left;
+    display: block;
+    /* Restore line */
 }
 
 /* Form Extras */
@@ -320,6 +352,7 @@
     justify-content: space-between;
     align-items: center;
     font-size: 14px;
+    margin-top: 0;
 }
 
 .remember-me {
@@ -341,11 +374,12 @@
     border-radius: 4px;
     position: relative;
     transition: all 0.3s;
+    background: transparent;
 }
 
 .remember-me input:checked+.checkmark {
-    background: #6366f1;
-    border-color: #6366f1;
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
 }
 
 .remember-me input:checked+.checkmark::after {
@@ -360,14 +394,14 @@
 }
 
 .forgot-link {
-    color: #6366f1;
+    color: var(--primary-blue);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
 }
 
 .forgot-link:hover {
-    color: #4f46e5;
+    color: #2563EB;
 }
 
 /* Submit Button */
@@ -377,7 +411,7 @@
     justify-content: center;
     gap: 8px;
     padding: 16px 32px;
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #2563EB 100%);
     color: white;
     border: none;
     border-radius: 12px;
@@ -388,15 +422,17 @@
     position: relative;
     overflow: hidden;
     margin-top: 8px;
+    box-shadow: none;
 }
 
 .submit-btn::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    background: linear-gradient(135deg, #2563EB 0%, #1d4ed8 100%);
     opacity: 0;
     transition: opacity 0.3s;
+    display: block;
 }
 
 .submit-btn:hover::before {
@@ -405,7 +441,7 @@
 
 .submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
 }
 
 .submit-btn>* {
@@ -432,6 +468,9 @@
     gap: 16px;
     color: #94a3b8;
     font-size: 13px;
+    margin: 24px 0;
+    text-transform: none;
+    letter-spacing: normal;
 }
 
 .divider::before,
@@ -468,6 +507,7 @@
 .social-btn:hover {
     border-color: #cbd5e1;
     background: #f8fafc;
+    transform: none;
 }
 
 .social-btn img {
@@ -475,16 +515,12 @@
     height: 20px;
 }
 
-.social-btn.facebook img {
-    width: 20px;
-    height: 20px;
-}
-
-/* ========== RESPONSIVE ========== */
+/* Responsive */
 @media (max-width: 900px) {
     .auth-glass-container {
         grid-template-columns: 1fr;
         max-width: 480px;
+        min-height: auto;
     }
 
     .auth-brand-side {

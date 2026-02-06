@@ -1,6 +1,6 @@
 /* ========== FOOTER - FIGMA LIGHT BLUE STYLE ========== */
 .public-footer-figma {
-    background-color: #9ECAEB;
+    background-color: var(--footer-bg);
     /* Light blue from screenshot */
     color: #000;
     padding: 60px 0 0;
@@ -8,9 +8,9 @@
 }
 
 .footer-container-figma {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 40px;
     display: grid;
     grid-template-columns: 1.2fr 1fr 1fr 1fr 1.3fr;
     gap: 40px;

@@ -25,20 +25,25 @@ const Login = () => {
         setError('');
 
         try {
+            let user;
             if (isRegister) {
                 if (password !== confirmPassword) {
                     setError('Mật khẩu không khớp!');
                     setIsLoading(false);
                     return;
                 }
-                await register(fullName, email, password);
+                user = await register(fullName, email, password);
             } else {
-                await login(email, password);
+                user = await login(email, password);
             }
 
-            // Redirect to the page they tried to visit or home
-            const from = location.state?.from?.pathname || '/';
-            navigate(from, { replace: true });
+            // Redirect logic based on role
+            if (user?.role === 'admin') {
+                navigate('/admin');
+            } else {
+                const from = location.state?.from?.pathname || '/';
+                navigate(from, { replace: true });
+            }
         } catch (err) {
             setError(err.message || 'Đã xảy ra lỗi');
         } finally {

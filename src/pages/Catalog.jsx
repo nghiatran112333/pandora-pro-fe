@@ -62,32 +62,6 @@ const Catalog = () => {
 
     return (
         <div className="catalog-page-premium">
-            {/* Hero Banner */}
-            <div className="catalog-hero">
-                <div className="hero-content">
-                    <div className="hero-text">
-                        <div className="apple-logo">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" />
-                            <span>Bộ sưu tập Iphone 14</span>
-                        </div>
-                        <h1>Ưu đãi đặc biệt<br />lên tới 20%</h1>
-                        <button className="shop-now-btn" onClick={() => navigate('/product-detail')}>
-                            Mua Ngay <span>→</span>
-                        </button>
-                    </div>
-                </div>
-                <div className="hero-image">
-                    <img src="https://images.unsplash.com/photo-1695048133142-1a20484bbc35?w=600" alt="iPhone 14" />
-                </div>
-                <div className="hero-dots">
-                    <span className="dot"></span>
-                    <span className="dot"></span>
-                    <span className="dot active"></span>
-                    <span className="dot"></span>
-                    <span className="dot"></span>
-                </div>
-            </div>
-
             <div className="catalog-container">
                 {/* Breadcrumb */}
                 <nav className="breadcrumb">
@@ -261,56 +235,6 @@ const Catalog = () => {
                         )}
                     </div>
                 </div>
-
-                {/* Flash Sales & Services */}
-                <section className="flash-sales-section">
-                    <div className="flash-sales-header">
-                        <div className="flash-sales-left">
-                            <div className="todays-tag">
-                                <span className="red-bar"></span>
-                                <span className="todays-text">Today's</span>
-                            </div>
-                            <div className="flash-title-row">
-                                <h2>Flash Sales</h2>
-                                <div className="countdown-figma">
-                                    <div className="time-unit">
-                                        <span className="time-label">Days</span>
-                                        <span className="time-value">03</span>
-                                    </div>
-                                    <span className="time-colon">:</span>
-                                    <div className="time-unit">
-                                        <span className="time-label">Hours</span>
-                                        <span className="time-value">23</span>
-                                    </div>
-                                    <span className="time-colon">:</span>
-                                    <div className="time-unit">
-                                        <span className="time-label">Minutes</span>
-                                        <span className="time-value">19</span>
-                                    </div>
-                                    <span className="time-colon">:</span>
-                                    <div className="time-unit">
-                                        <span className="time-label">Seconds</span>
-                                        <span className="time-value">56</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="nav-arrows">
-                            <button className="arrow"><ChevronLeft size={20} /></button>
-                            <button className="arrow"><ChevronRight size={20} /></button>
-                        </div>
-                    </div>
-                    <div className="product-grid-figma">
-                        {products.slice(0, 4).map((product) => (
-                            <ProductCard key={`flash-${product.id}`} product={product} />
-                        ))}
-                    </div>
-                    <div className="view-all-center">
-                        <button className="view-all-products-btn" onClick={() => navigate('/catalog')}>
-                            Xem tất cả sản phẩm
-                        </button>
-                    </div>
-                </section>
             </div>
         </div>
     );

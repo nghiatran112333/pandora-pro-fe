@@ -1,9 +1,31 @@
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Sidebar from './Sidebar';
+import Header from './Header';
 
 const pageVariants = {
-    initial: { opacity: 0, x: -10 },
-    in: { opacity: 1, x: 0 },
-    out: { opacity: 0, x: 10 }
+    initial: {
+        opacity: 0,
+        scale: 0.98,
+        filter: 'blur(4px)'
+    },
+    in: {
+        opacity: 1,
+        scale: 1,
+        filter: 'blur(0px)'
+    },
+    out: {
+        opacity: 0,
+        scale: 1.02,
+        filter: 'blur(4px)'
+    }
+};
+
+const pageTransition = {
+    type: 'tween',
+    ease: 'easeInOut',
+    duration: 0.3
 };
 
 const AdminLayout = () => {
@@ -20,7 +42,7 @@ const AdminLayout = () => {
                         animate="in"
                         exit="out"
                         variants={pageVariants}
-                        transition={{ duration: 0.3 }}
+                        transition={pageTransition}
                     >
                         <Outlet />
                     </motion.div>

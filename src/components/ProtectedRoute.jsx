@@ -67,14 +67,15 @@ export const AdminRoute = ({ children }) => {
 
 // Guest Route - only for non-authenticated users (login/register pages)
 export const GuestRoute = ({ children }) => {
-    const { isAuthenticated, isLoading } = useAuth();
+    const { isAuthenticated, isAdmin, isLoading } = useAuth();
 
     if (isLoading) {
         return <LoadingSpinner />;
     }
 
     if (isAuthenticated) {
-        return <Navigate to="/" replace />;
+        // Smart Redirect: If admin, go to dashboard. If user, go home.
+        return <Navigate to={isAdmin ? "/admin" : "/"} replace />;
     }
 
     return children;
