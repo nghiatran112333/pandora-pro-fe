@@ -1,16 +1,39 @@
-# React + Vite
+# Pandora Pro - Premium E-commerce Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Pandora Pro is a high-end e-commerce frontend designed with a focus on premium aesthetics, glassmorphism, and smooth interactive experiences. It includes a comprehensive Admin Dashboard and a polished Public Website.
 
-Currently, two official plugins are available:
+## 🚀 Key Features
+- **Premium UI**: Glassmorphism effects, deep shadows, and professional color palettes.
+- **Unified Transitions**: Synchronized page animations across both Admin and Public interfaces.
+- **Interactive Dashboards**: Advanced profile management, real-time toast notifications, and compact search.
+- **Responsive Design**: Fully optimized for Desktop, Tablet, and Mobile.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Getting Started
 
-## React Compiler
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v16.x or higher recommended)
+- [npm](https://www.npmjs.com/)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Installation
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/nghiatran112333/pandora-pro-fe.git
+   ```
+2. **Navigate to the dashboard directory**:
+   ```bash
+   cd dashboard
+   ```
+3. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-## Expanding the ESLint configuration
+### Running the Project
+To start the development server:
+```bash
+npm run dev
+```
+The application will be available at `http://localhost:5173`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+*Created with focus on visual excellence and seamless user journeys.*
